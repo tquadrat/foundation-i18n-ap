@@ -1,0 +1,589 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     version='1.1'
+     baseProfile='full'
+     width='3570.000'
+     height='1358.000'>
+    <defs>
+        <style><![CDATA[
+            line
+            {
+              stroke: black;
+            }
+            line.separator
+            {
+              stroke:       black;
+              stroke-width: 1;
+            }
+            marker
+            {
+              fill: white;
+            }
+            path
+            {
+              fill:   white;
+              stroke: black;
+            }
+            path.implementation
+            {
+              fill:             none;
+              stroke-dasharray: 5,5;
+              stroke-width:     3;
+            }
+            path.inheritance
+            {
+              fill:         none;
+              stroke-width: 3;
+            }
+            rect
+            {
+              fill:         none;
+              stroke:       black;
+              stroke-width: 2;
+            }
+            rect.externalClass
+            {
+              fill:         #D0D0D0;
+              fill-opacity: 0.8;
+            }
+            rect.focusClass
+            {
+              fill:         #FFFFF9;
+              fill-opacity: 0.8;
+            }
+            rect.otherClass
+            {
+              fill:         #F0E68C;
+              fill-opacity: 0.8;
+            }
+            rect.template
+            {
+              fill:             #FFFFFF;
+              fill-opacity:     1.0;
+              stroke-dasharray: 3,3;
+            }
+            text
+            {
+              font-family: monospace;
+              font-size:   10px;
+              font-weight: bold;
+            }
+            text.abstract
+            {
+              font-style: italic;
+            }
+            text.final
+            {
+              text-decoration: underline;
+            }
+            text.static
+            {
+              font-weight: normal;
+            }
+            text.stereotype
+            {
+              font-size:   8px;
+              font-weight: normal;
+            }
+            ]]></style>
+        <marker id='inheritance'
+                viewBox='0,0,40,40'
+                markerUnits='strokeWidth'
+                refX='40'
+                refY='20'
+                markerWidth='6'
+                markerHeight='6'
+                orient='auto'>
+            <path d='M40,20 l-40,-20 v40 Z'
+                  fill='#ffffff'
+                  stroke='#000000'
+                  stroke-width='3'/>
+        </marker>
+        <marker id='implementation'
+                viewBox='0,0,40,40'
+                markerUnits='strokeWidth'
+                refX='40'
+                refY='20'
+                markerWidth='6'
+                markerHeight='6'
+                orient='auto'>
+            <path d='M40,20 l-40,-20 v40 Z'
+                  fill='#ffffff'
+                  stroke='#000000'
+                  stroke-width='3'/>
+        </marker>
+        <clipPath id='ID000001'>
+            <rect class='focusClass'
+                  height='161.000'
+                  width='1480.000'
+                  x='0.000'
+                  y='0.000'/>
+        </clipPath>
+        <symbol id='org.tquadrat.foundation.i18n.ap.I18nAnnotationProcessor'>
+            <g>
+                <g class='focusClass'
+                   clip-path='url(#ID000001)'>
+                    <rect x='0.000'
+                          y='0.000'
+                          width='1480.000'
+                          height='161.000'
+                          class='focusClass'/>
+                    <line x1='0.000'
+                          y1='17.000'
+                          x2='1480.000'
+                          y2='17.000'
+                          class='separator'/>
+                    <text x='671.000'
+                          y='13.000'>I18nAnnotationProcessor</text>
+                    <line x1='0.000'
+                          y1='56.000'
+                          x2='1480.000'
+                          y2='56.000'
+                          class='separator'/>
+                    <text y='30.000'>- m_BaseBundleName:java.lang.String</text>
+                    <text y='41.000'>- m_DefaultLanguage:java.util.Locale</text>
+                    <text y='52.000'>- m_MessagePrefix:java.lang.String</text>
+                    <text x='5.000'
+                          y='69.000'>+ I18nAnnotationProcessor()</text>
+                    <text x='5.000'
+                          y='80.000'>- generateResourceBundle(textFileLocation:java.util.Optional&lt;java.lang.String&gt;,texts:java.util.Map&lt;java.util.Locale,java.util.SortedMap&lt;java.lang.String,org.tquadrat.foundation.i18n.ap.TextEntry&gt;&gt;,elements:javax.lang.model.element.Element&#x2026;):void</text>
+                    <text x='5.000'
+                          y='91.000'># getSupportedAnnotationClasses():java.util.Collection&lt;java.lang.Class&lt;? extends java.lang.annotation.Annotation&gt;&gt;</text>
+                    <text x='5.000'
+                          y='102.000'>- parseTextsFile(texts:java.util.Map&lt;java.util.Locale,java.util.SortedMap&lt;java.lang.String,org.tquadrat.foundation.i18n.ap.TextEntry&gt;&gt;,inputSource:org.xml.sax.InputSource):void</text>
+                    <text x='5.000'
+                          y='113.000'>+ process(annotations:java.util.Set&lt;? extends javax.lang.model.element.TypeElement&gt;,roundEnvironment:javax.annotation.processing.RoundEnvironment):boolean</text>
+                    <text x='5.000'
+                          y='124.000'>- searchAdditionalTextsOnConfiguredLocation():java.util.Optional&lt;org.xml.sax.InputSource&gt;</text>
+                    <text x='5.000'
+                          y='135.000'>- searchAdditionalTextsOnProvidedLocation(location:java.lang.String):java.util.Optional&lt;org.xml.sax.InputSource&gt;</text>
+                    <text x='5.000'
+                          y='146.000'>- searchAdditionalTextsOnSourceTree(filer:javax.annotation.processing.Filer):java.util.Optional&lt;org.xml.sax.InputSource&gt;</text>
+                    <text x='5.000'
+                          y='157.000'>- writeResourceBundleFile(data:java.util.Collection&lt;org.tquadrat.foundation.i18n.ap.TextEntry&gt;,writer:java.io.Writer):void</text>
+                </g>
+            </g>
+        </symbol>
+        <clipPath id='ID000002'>
+            <rect class='externalClass'
+                  height='392.000'
+                  width='1654.000'
+                  x='0.000'
+                  y='0.000'/>
+        </clipPath>
+        <symbol id='org.tquadrat.foundation.ap.APBase'>
+            <g>
+                <g clip-path='url(#ID000002)'>
+                    <rect x='0.000'
+                          y='0.000'
+                          width='1654.000'
+                          height='392.000'
+                          class='externalClass'/>
+                    <line x1='0.000'
+                          y1='28.000'
+                          x2='1654.000'
+                          y2='28.000'
+                          class='separator'/>
+                    <text x='812.600'
+                          y='13.000'
+                          class='stereotype'>&#xAB;Type&#xBB;</text>
+                    <text x='809.000'
+                          y='24.000'
+                          class='abstract'>APBase</text>
+                    <line x1='0.000'
+                          y1='133.000'
+                          x2='1654.000'
+                          y2='133.000'
+                          class='separator'/>
+                    <text y='41.000'
+                          class='static final'>+ PACKAGE_NAME:java.lang.String</text>
+                    <text y='52.000'
+                          class='static final'>+ ADD_DEBUG_OUTPUT:java.lang.String</text>
+                    <text y='63.000'
+                          class='static final'>+ MAVEN_GOAL:java.lang.String</text>
+                    <text y='74.000'
+                          class='static final'>+ MSG_AnnotationOnlyForFields:java.lang.String</text>
+                    <text y='85.000'
+                          class='static final'>+ MSG_FieldsOnly:java.lang.String</text>
+                    <text y='96.000'
+                          class='static final'>+ MSG_IllegalAnnotationUse:java.lang.String</text>
+                    <text y='107.000'
+                          class='static final'>+ MSG_MultipleElements:java.lang.String</text>
+                    <text y='118.000'
+                          class='static final'>+ MSG_MultipleFields:java.lang.String</text>
+                    <text y='129.000'
+                          class='static final'>+ MSG_StringConstantRequired:java.lang.String</text>
+                    <text x='5.000'
+                          y='146.000'># APBase()</text>
+                    <text x='5.000'
+                          y='157.000'>+ addDebugOutput():boolean</text>
+                    <text x='5.000'
+                          y='168.000'>+ getCompletions(arg0:javax.lang.model.element.Element,arg1:javax.lang.model.element.AnnotationMirror,arg2:javax.lang.model.element.ExecutableElement,arg3:java.lang.String):java.lang.Iterable&lt;? extends javax.annotation.processing.Completion&gt;</text>
+                    <text x='5.000'
+                          y='179.000'>+ getElementUtils():javax.lang.model.util.Elements</text>
+                    <text x='5.000'
+                          y='190.000'>+ getFiler():javax.annotation.processing.Filer</text>
+                    <text x='5.000'
+                          y='201.000'>+ getLocale():java.util.Locale</text>
+                    <text x='5.000'
+                          y='212.000'>+ getMessager():javax.annotation.processing.Messager</text>
+                    <text x='5.000'
+                          y='223.000'># getOption(arg0:java.lang.String):java.util.Optional&lt;java.lang.String&gt;</text>
+                    <text x='5.000'
+                          y='234.000'>+ getOptions():java.util.Map&lt;java.lang.String,java.lang.String&gt;</text>
+                    <text x='5.000'
+                          y='245.000'>+ getSourceVersion():javax.lang.model.SourceVersion</text>
+                    <text x='5.000'
+                          y='256.000'
+                          class='abstract'># getSupportedAnnotationClasses():java.util.Collection&lt;java.lang.Class&lt;? extends java.lang.annotation.Annotation&gt;&gt;</text>
+                    <text x='5.000'
+                          y='267.000'>+ getSupportedAnnotationTypes():java.util.Set&lt;java.lang.String&gt;</text>
+                    <text x='5.000'
+                          y='278.000'>+ getSupportedOptions():java.util.Set&lt;java.lang.String&gt;</text>
+                    <text x='5.000'
+                          y='289.000'>+ getSupportedSourceVersion():javax.lang.model.SourceVersion</text>
+                    <text x='5.000'
+                          y='300.000'>+ getTypeUtils():javax.lang.model.util.Types</text>
+                    <text x='5.000'
+                          y='311.000'>+ init(arg0:javax.annotation.processing.ProcessingEnvironment):void</text>
+                    <text x='5.000'
+                          y='322.000'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence):void</text>
+                    <text x='5.000'
+                          y='333.000'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element):void</text>
+                    <text x='5.000'
+                          y='344.000'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element,arg3:javax.lang.model.element.AnnotationMirror):void</text>
+                    <text x='5.000'
+                          y='355.000'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element,arg3:javax.lang.model.element.AnnotationMirror,arg4:javax.lang.model.element.AnnotationValue):void</text>
+                    <text x='5.000'
+                          y='366.000'
+                          class='abstract'>+ process(arg0:java.util.Set&lt;? extends javax.lang.model.element.TypeElement&gt;,arg1:javax.annotation.processing.RoundEnvironment):boolean</text>
+                    <text x='5.000'
+                          y='377.000'># retrieveAnnotatedField(arg0:java.util.Collection&lt;? extends javax.lang.model.element.TypeElement&gt;,arg1:javax.annotation.processing.RoundEnvironment,arg2:java.lang.Class&lt;? extends java.lang.annotation.Annotation&gt;):java.util.Optional&lt;javax.lang.model.element.VariableElement&gt;</text>
+                    <text x='5.000'
+                          y='388.000'>+ retrieveInterfaces(arg0:javax.lang.model.element.TypeElement,arg1:java.util.Set&lt;? super javax.lang.model.element.TypeElement&gt;):void</text>
+                </g>
+            </g>
+        </symbol>
+        <clipPath id='ID000003'>
+            <rect class='externalClass'
+                  height='172.000'
+                  width='244.000'
+                  x='0.000'
+                  y='0.000'/>
+        </clipPath>
+        <symbol id='java.lang.Object'>
+            <g>
+                <g clip-path='url(#ID000003)'>
+                    <rect x='0.000'
+                          y='0.000'
+                          width='244.000'
+                          height='172.000'
+                          class='externalClass'/>
+                    <line x1='0.000'
+                          y1='17.000'
+                          x2='244.000'
+                          y2='17.000'
+                          class='separator'/>
+                    <text x='104.000'
+                          y='13.000'>Object</text>
+                    <line x1='0.000'
+                          y1='34.000'
+                          x2='244.000'
+                          y2='34.000'
+                          class='separator'/>
+                    <text x='5.000'
+                          y='30.000'/>
+                    <text x='5.000'
+                          y='47.000'>+ Object()</text>
+                    <text x='5.000'
+                          y='58.000'>+ getClass():java.lang.Class&lt;?&gt;</text>
+                    <text x='5.000'
+                          y='69.000'>+ hashCode():int</text>
+                    <text x='5.000'
+                          y='80.000'>+ equals(arg0:java.lang.Object):boolean</text>
+                    <text x='5.000'
+                          y='91.000'># clone():java.lang.Object</text>
+                    <text x='5.000'
+                          y='102.000'>+ toString():java.lang.String</text>
+                    <text x='5.000'
+                          y='113.000'>+ notify():void</text>
+                    <text x='5.000'
+                          y='124.000'>+ notifyAll():void</text>
+                    <text x='5.000'
+                          y='135.000'>+ wait():void</text>
+                    <text x='5.000'
+                          y='146.000'>+ wait(arg0:long):void</text>
+                    <text x='5.000'
+                          y='157.000'>+ wait(arg0:long,arg1:int):void</text>
+                    <text x='5.000'
+                          y='168.000'># finalize():void</text>
+                </g>
+            </g>
+        </symbol>
+        <clipPath id='ID000004'>
+            <rect class='externalClass'
+                  height='117.000'
+                  width='1456.000'
+                  x='0.000'
+                  y='0.000'/>
+        </clipPath>
+        <symbol id='javax.annotation.processing.Processor'>
+            <g>
+                <g clip-path='url(#ID000004)'>
+                    <rect x='0.000'
+                          y='0.000'
+                          width='1456.000'
+                          height='117.000'
+                          class='externalClass'/>
+                    <line x1='0.000'
+                          y1='28.000'
+                          x2='1456.000'
+                          y2='28.000'
+                          class='separator'/>
+                    <text x='701.600'
+                          y='13.000'
+                          class='stereotype'>&#xAB;Interface&#xBB;</text>
+                    <text x='701.000'
+                          y='24.000'
+                          class='abstract'>Processor</text>
+                    <line x1='0.000'
+                          y1='45.000'
+                          x2='1456.000'
+                          y2='45.000'
+                          class='separator'/>
+                    <text x='5.000'
+                          y='41.000'/>
+                    <text x='5.000'
+                          y='58.000'
+                          class='abstract'>+ getSupportedOptions():java.util.Set&lt;java.lang.String&gt;</text>
+                    <text x='5.000'
+                          y='69.000'
+                          class='abstract'>+ getSupportedAnnotationTypes():java.util.Set&lt;java.lang.String&gt;</text>
+                    <text x='5.000'
+                          y='80.000'
+                          class='abstract'>+ getSupportedSourceVersion():javax.lang.model.SourceVersion</text>
+                    <text x='5.000'
+                          y='91.000'
+                          class='abstract'>+ init(arg0:javax.annotation.processing.ProcessingEnvironment):void</text>
+                    <text x='5.000'
+                          y='102.000'
+                          class='abstract'>+ process(arg0:java.util.Set&lt;? extends javax.lang.model.element.TypeElement&gt;,arg1:javax.annotation.processing.RoundEnvironment):boolean</text>
+                    <text x='5.000'
+                          y='113.000'
+                          class='abstract'>+ getCompletions(arg0:javax.lang.model.element.Element,arg1:javax.lang.model.element.AnnotationMirror,arg2:javax.lang.model.element.ExecutableElement,arg3:java.lang.String):java.lang.Iterable&lt;? extends javax.annotation.processing.Completion&gt;</text>
+                </g>
+            </g>
+        </symbol>
+        <clipPath id='ID000005'>
+            <rect class='externalClass'
+                  height='183.000'
+                  width='1282.000'
+                  x='0.000'
+                  y='0.000'/>
+        </clipPath>
+        <symbol id='org.tquadrat.foundation.ap.APHelper'>
+            <g>
+                <g clip-path='url(#ID000005)'>
+                    <rect x='0.000'
+                          y='0.000'
+                          width='1282.000'
+                          height='183.000'
+                          class='externalClass'/>
+                    <line x1='0.000'
+                          y1='28.000'
+                          x2='1282.000'
+                          y2='28.000'
+                          class='separator'/>
+                    <text x='614.600'
+                          y='13.000'
+                          class='stereotype'>&#xAB;Interface&#xBB;</text>
+                    <text x='617.000'
+                          y='24.000'
+                          class='abstract'>APHelper</text>
+                    <line x1='0.000'
+                          y1='45.000'
+                          x2='1282.000'
+                          y2='45.000'
+                          class='separator'/>
+                    <text x='5.000'
+                          y='41.000'/>
+                    <text x='5.000'
+                          y='58.000'
+                          class='abstract'>+ addDebugOutput():boolean</text>
+                    <text x='5.000'
+                          y='69.000'>&#x2A22; getAnnotationMirror(arg0:javax.lang.model.element.Element,arg1:java.lang.Class&lt;? extends java.lang.annotation.Annotation&gt;):java.util.Optional&lt;? extends javax.lang.model.element.AnnotationMirror&gt;</text>
+                    <text x='5.000'
+                          y='80.000'>&#x2A22; getAnnotationValue(arg0:javax.lang.model.element.AnnotationMirror):java.util.Optional&lt;? extends javax.lang.model.element.AnnotationValue&gt;</text>
+                    <text x='5.000'
+                          y='91.000'>&#x2A22; getAnnotationValue(arg0:javax.lang.model.element.AnnotationMirror,arg1:java.lang.String):java.util.Optional&lt;? extends javax.lang.model.element.AnnotationValue&gt;</text>
+                    <text x='5.000'
+                          y='102.000'>&#x2A22; getTypeMirrorFromAnnotationValue(arg0:javax.lang.model.element.Element,arg1:java.lang.Class&lt;? extends java.lang.annotation.Annotation&gt;):java.util.Optional&lt;javax.lang.model.type.TypeMirror&gt;</text>
+                    <text x='5.000'
+                          y='113.000'>&#x2A22; getTypeMirrorFromAnnotationValue(arg0:javax.lang.model.element.Element,arg1:java.lang.Class&lt;? extends java.lang.annotation.Annotation&gt;,arg2:java.lang.String):java.util.Optional&lt;javax.lang.model.type.TypeMirror&gt;</text>
+                    <text x='5.000'
+                          y='124.000'>&#x2A22; hasAnnotation(arg0:javax.lang.model.element.Element,arg1:java.lang.Class&lt;A&gt;):boolean</text>
+                    <text x='5.000'
+                          y='135.000'>&#x2A22; printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence):void</text>
+                    <text x='5.000'
+                          y='146.000'>&#x2A22; printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element):void</text>
+                    <text x='5.000'
+                          y='157.000'>&#x2A22; printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element,arg3:javax.lang.model.element.AnnotationMirror):void</text>
+                    <text x='5.000'
+                          y='168.000'>&#x2A22; printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element,arg3:javax.lang.model.element.AnnotationMirror,arg4:javax.lang.model.element.AnnotationValue):void</text>
+                    <text x='5.000'
+                          y='179.000'>&#x2A22; retrieveInterfaces(arg0:javax.lang.model.element.TypeElement,arg1:java.util.Set&lt;? super javax.lang.model.element.TypeElement&gt;):void</text>
+                </g>
+            </g>
+        </symbol>
+        <clipPath id='ID000006'>
+            <rect class='externalClass'
+                  height='95.000'
+                  width='1282.000'
+                  x='0.000'
+                  y='0.000'/>
+        </clipPath>
+        <symbol id='javax.annotation.processing.Messager'>
+            <g>
+                <g clip-path='url(#ID000006)'>
+                    <rect x='0.000'
+                          y='0.000'
+                          width='1282.000'
+                          height='95.000'
+                          class='externalClass'/>
+                    <line x1='0.000'
+                          y1='28.000'
+                          x2='1282.000'
+                          y2='28.000'
+                          class='separator'/>
+                    <text x='614.600'
+                          y='13.000'
+                          class='stereotype'>&#xAB;Interface&#xBB;</text>
+                    <text x='617.000'
+                          y='24.000'
+                          class='abstract'>Messager</text>
+                    <line x1='0.000'
+                          y1='45.000'
+                          x2='1282.000'
+                          y2='45.000'
+                          class='separator'/>
+                    <text x='5.000'
+                          y='41.000'/>
+                    <text x='5.000'
+                          y='58.000'
+                          class='abstract'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence):void</text>
+                    <text x='5.000'
+                          y='69.000'
+                          class='abstract'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element):void</text>
+                    <text x='5.000'
+                          y='80.000'
+                          class='abstract'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element,arg3:javax.lang.model.element.AnnotationMirror):void</text>
+                    <text x='5.000'
+                          y='91.000'
+                          class='abstract'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element,arg3:javax.lang.model.element.AnnotationMirror,arg4:javax.lang.model.element.AnnotationValue):void</text>
+                </g>
+            </g>
+        </symbol>
+        <clipPath id='ID000007'>
+            <rect class='externalClass'
+                  height='139.000'
+                  width='388.000'
+                  x='0.000'
+                  y='0.000'/>
+        </clipPath>
+        <symbol id='javax.annotation.processing.ProcessingEnvironment'>
+            <g>
+                <g clip-path='url(#ID000007)'>
+                    <rect x='0.000'
+                          y='0.000'
+                          width='388.000'
+                          height='139.000'
+                          class='externalClass'/>
+                    <line x1='0.000'
+                          y1='28.000'
+                          x2='388.000'
+                          y2='28.000'
+                          class='separator'/>
+                    <text x='167.600'
+                          y='13.000'
+                          class='stereotype'>&#xAB;Interface&#xBB;</text>
+                    <text x='131.000'
+                          y='24.000'
+                          class='abstract'>ProcessingEnvironment</text>
+                    <line x1='0.000'
+                          y1='45.000'
+                          x2='388.000'
+                          y2='45.000'
+                          class='separator'/>
+                    <text x='5.000'
+                          y='41.000'/>
+                    <text x='5.000'
+                          y='58.000'
+                          class='abstract'>+ getOptions():java.util.Map&lt;java.lang.String,java.lang.String&gt;</text>
+                    <text x='5.000'
+                          y='69.000'
+                          class='abstract'>+ getMessager():javax.annotation.processing.Messager</text>
+                    <text x='5.000'
+                          y='80.000'
+                          class='abstract'>+ getFiler():javax.annotation.processing.Filer</text>
+                    <text x='5.000'
+                          y='91.000'
+                          class='abstract'>+ getElementUtils():javax.lang.model.util.Elements</text>
+                    <text x='5.000'
+                          y='102.000'
+                          class='abstract'>+ getTypeUtils():javax.lang.model.util.Types</text>
+                    <text x='5.000'
+                          y='113.000'
+                          class='abstract'>+ getSourceVersion():javax.lang.model.SourceVersion</text>
+                    <text x='5.000'
+                          y='124.000'
+                          class='abstract'>+ getLocale():java.util.Locale</text>
+                    <text x='5.000'
+                          y='135.000'>&#x2A22; isPreviewEnabled():boolean</text>
+                </g>
+            </g>
+        </symbol>
+    </defs>
+    <path class='inheritance'
+          d='M1785.000,1072.000 L1785.000,972.000'
+          marker-end='url(#inheritance)'/>
+    <path class='inheritance'
+          d='M1735.000,580.000 c0.000,-368.000,-1588.000,0.000,-1588.000,-368.000 v-15'
+          marker-end='url(#inheritance)'/>
+    <path class='implementation'
+          d='M1785.000,580.000 c0.000,-423.000,-738.000,0.000,-738.000,-423.000 v-15'
+          marker-end='url(#implementation)'/>
+    <path class='implementation'
+          d='M1835.000,580.000 c0.000,-85.000,-50.000,0.000,-50.000,-85.000 v-15'
+          marker-end='url(#implementation)'/>
+    <path class='inheritance'
+          d='M1760.000,297.000 c0.000,-162.000,706.000,0.000,706.000,-162.000 v-15'
+          marker-end='url(#inheritance)'/>
+    <path class='inheritance'
+          d='M1810.000,297.000 c0.000,-118.000,1541.000,0.000,1541.000,-118.000 v-15'
+          marker-end='url(#inheritance)'/>
+    <use x='25.000'
+         y='25.000'
+         xlink:href='#java.lang.Object'/>
+    <use x='319.000'
+         y='25.000'
+         xlink:href='#javax.annotation.processing.Processor'/>
+    <use x='1825.000'
+         y='25.000'
+         xlink:href='#javax.annotation.processing.Messager'/>
+    <use x='3157.000'
+         y='25.000'
+         xlink:href='#javax.annotation.processing.ProcessingEnvironment'/>
+    <use x='1144.000'
+         y='297.000'
+         xlink:href='#org.tquadrat.foundation.ap.APHelper'/>
+    <use x='958.000'
+         y='580.000'
+         xlink:href='#org.tquadrat.foundation.ap.APBase'/>
+    <use x='1045.000'
+         y='1072.000'
+         xlink:href='#org.tquadrat.foundation.i18n.ap.I18nAnnotationProcessor'/>
+</svg>

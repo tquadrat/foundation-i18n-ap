@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.tquadrat.foundation.i18n.ap","l":"I18nAnnotationProcessor"},{"p":"org.tquadrat.foundation.i18n.ap","l":"TextCollector"},{"p":"org.tquadrat.foundation.i18n.ap","l":"TextEntry"},{"p":"org.tquadrat.foundation.i18n.ap","l":"TextFileContentHandler"}];updateSearchResults();
