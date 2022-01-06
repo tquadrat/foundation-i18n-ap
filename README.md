@@ -1,5 +1,7 @@
-# tquadrat *Foundation Library*
-## `foundation-i18n-ap`
+This annotation processor allows the generation of resource bundle files from annotated Strings in the code.
+
+Refer also to [`foundation-i18n`](https://tquadrat.github.io/foundation-i18n/)
+
 ### Documentation
 
-- [Javadoc Reference](https://htmlpreview.github.io/?https://github.com/tquadrat/foundation-i18n-ap/blob/master/javadoc/index.html)
+- [Javadoc Reference](https://tquadrat.github.io/foundation-i18n-ap/javadoc/index.html)
