@@ -104,12 +104,12 @@
 <span class="source-line-no">091</span><span id="line-91"> *  The annotation processor for the module {@code org.tquadrat.foundation.i18n}.</span>
 <span class="source-line-no">092</span><span id="line-92"> *</span>
 <span class="source-line-no">093</span><span id="line-93"> *  @extauthor Thomas Thrien - thomas.thrien@tquadrat.org</span>
-<span class="source-line-no">094</span><span id="line-94"> *  @version $Id: I18nAnnotationProcessor.java 934 2021-12-06 15:19:40Z tquadrat $</span>
+<span class="source-line-no">094</span><span id="line-94"> *  @version $Id: I18nAnnotationProcessor.java 997 2022-01-26 14:55:05Z tquadrat $</span>
 <span class="source-line-no">095</span><span id="line-95"> *  @since 0.0.1</span>
 <span class="source-line-no">096</span><span id="line-96"> *</span>
 <span class="source-line-no">097</span><span id="line-97"> *  @UMLGraph.link</span>
 <span class="source-line-no">098</span><span id="line-98"> */</span>
-<span class="source-line-no">099</span><span id="line-99">@ClassVersion( sourceVersion = "$Id: I18nAnnotationProcessor.java 934 2021-12-06 15:19:40Z tquadrat $" )</span>
+<span class="source-line-no">099</span><span id="line-99">@ClassVersion( sourceVersion = "$Id: I18nAnnotationProcessor.java 997 2022-01-26 14:55:05Z tquadrat $" )</span>
 <span class="source-line-no">100</span><span id="line-100">@API( status = STABLE, since = "0.0.1" )</span>
 <span class="source-line-no">101</span><span id="line-101">@SupportedSourceVersion( SourceVersion.RELEASE_17 )</span>
 <span class="source-line-no">102</span><span id="line-102">@SupportedOptions( { APBase.ADD_DEBUG_OUTPUT, APBase.MAVEN_GOAL, ADDITIONAL_TEXT_LOCATION } )</span>
@@ -321,11 +321,11 @@
 <span class="source-line-no">308</span><span id="line-308">            if( !annotations.isEmpty() )</span>
 <span class="source-line-no">309</span><span id="line-309">            {</span>
 <span class="source-line-no">310</span><span id="line-310">                //---* Get the message prefix *--------------------------------</span>
-<span class="source-line-no">311</span><span id="line-311">                retrieveAnnotatedField( annotations, roundEnvironment, MessagePrefix.class )</span>
+<span class="source-line-no">311</span><span id="line-311">                retrieveAnnotatedField( roundEnvironment, MessagePrefix.class )</span>
 <span class="source-line-no">312</span><span id="line-312">                    .ifPresent( variableElement -&gt; m_MessagePrefix = variableElement.getConstantValue().toString() );</span>
 <span class="source-line-no">313</span><span id="line-313"></span>
 <span class="source-line-no">314</span><span id="line-314">                //---* Get the base bundle name *------------------------------</span>
-<span class="source-line-no">315</span><span id="line-315">                retrieveAnnotatedField( annotations, roundEnvironment, BaseBundleName.class )</span>
+<span class="source-line-no">315</span><span id="line-315">                retrieveAnnotatedField( roundEnvironment, BaseBundleName.class )</span>
 <span class="source-line-no">316</span><span id="line-316">                    .ifPresent( variableElement -&gt;</span>
 <span class="source-line-no">317</span><span id="line-317">                    {</span>
 <span class="source-line-no">318</span><span id="line-318">                        m_BaseBundleName = variableElement.getConstantValue().toString();</span>

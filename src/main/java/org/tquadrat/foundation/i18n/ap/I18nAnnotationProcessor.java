@@ -91,12 +91,12 @@ import org.xml.sax.SAXException;
  *  The annotation processor for the module {@code org.tquadrat.foundation.i18n}.
  *
  *  @extauthor Thomas Thrien - thomas.thrien@tquadrat.org
- *  @version $Id: I18nAnnotationProcessor.java 934 2021-12-06 15:19:40Z tquadrat $
+ *  @version $Id: I18nAnnotationProcessor.java 997 2022-01-26 14:55:05Z tquadrat $
  *  @since 0.0.1
  *
  *  @UMLGraph.link
  */
-@ClassVersion( sourceVersion = "$Id: I18nAnnotationProcessor.java 934 2021-12-06 15:19:40Z tquadrat $" )
+@ClassVersion( sourceVersion = "$Id: I18nAnnotationProcessor.java 997 2022-01-26 14:55:05Z tquadrat $" )
 @API( status = STABLE, since = "0.0.1" )
 @SupportedSourceVersion( SourceVersion.RELEASE_17 )
 @SupportedOptions( { APBase.ADD_DEBUG_OUTPUT, APBase.MAVEN_GOAL, ADDITIONAL_TEXT_LOCATION } )
@@ -308,11 +308,11 @@ public class I18nAnnotationProcessor extends APBase
             if( !annotations.isEmpty() )
             {
                 //---* Get the message prefix *--------------------------------
-                retrieveAnnotatedField( annotations, roundEnvironment, MessagePrefix.class )
+                retrieveAnnotatedField( roundEnvironment, MessagePrefix.class )
                     .ifPresent( variableElement -> m_MessagePrefix = variableElement.getConstantValue().toString() );
 
                 //---* Get the base bundle name *------------------------------
-                retrieveAnnotatedField( annotations, roundEnvironment, BaseBundleName.class )
+                retrieveAnnotatedField( roundEnvironment, BaseBundleName.class )
                     .ifPresent( variableElement ->
                     {
                         m_BaseBundleName = variableElement.getConstantValue().toString();

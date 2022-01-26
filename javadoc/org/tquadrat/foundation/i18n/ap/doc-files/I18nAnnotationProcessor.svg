@@ -171,7 +171,7 @@
         <clipPath id='ID000002'>
             <rect class='externalClass'
                   height='392.000'
-                  width='1654.000'
+                  width='1456.000'
                   x='0.000'
                   y='0.000'/>
         </clipPath>
@@ -180,23 +180,23 @@
                 <g clip-path='url(#ID000002)'>
                     <rect x='0.000'
                           y='0.000'
-                          width='1654.000'
+                          width='1456.000'
                           height='392.000'
                           class='externalClass'/>
                     <line x1='0.000'
                           y1='28.000'
-                          x2='1654.000'
+                          x2='1456.000'
                           y2='28.000'
                           class='separator'/>
-                    <text x='812.600'
+                    <text x='713.600'
                           y='13.000'
                           class='stereotype'>&#xAB;Type&#xBB;</text>
-                    <text x='809.000'
+                    <text x='710.000'
                           y='24.000'
                           class='abstract'>APBase</text>
                     <line x1='0.000'
                           y1='133.000'
-                          x2='1654.000'
+                          x2='1456.000'
                           y2='133.000'
                           class='separator'/>
                     <text y='41.000'
@@ -262,7 +262,7 @@
                           y='366.000'
                           class='abstract'>+ process(arg0:java.util.Set&lt;? extends javax.lang.model.element.TypeElement&gt;,arg1:javax.annotation.processing.RoundEnvironment):boolean</text>
                     <text x='5.000'
-                          y='377.000'># retrieveAnnotatedField(arg0:java.util.Collection&lt;? extends javax.lang.model.element.TypeElement&gt;,arg1:javax.annotation.processing.RoundEnvironment,arg2:java.lang.Class&lt;? extends java.lang.annotation.Annotation&gt;):java.util.Optional&lt;javax.lang.model.element.VariableElement&gt;</text>
+                          y='377.000'># retrieveAnnotatedField(arg0:javax.annotation.processing.RoundEnvironment,arg1:java.lang.Class&lt;? extends java.lang.annotation.Annotation&gt;):java.util.Optional&lt;javax.lang.model.element.VariableElement&gt;</text>
                     <text x='5.000'
                           y='388.000'>+ retrieveInterfaces(arg0:javax.lang.model.element.TypeElement,arg1:java.util.Set&lt;? super javax.lang.model.element.TypeElement&gt;):void</text>
                 </g>
@@ -580,7 +580,7 @@
     <use x='1144.000'
          y='297.000'
          xlink:href='#org.tquadrat.foundation.ap.APHelper'/>
-    <use x='958.000'
+    <use x='1057.000'
          y='580.000'
          xlink:href='#org.tquadrat.foundation.ap.APBase'/>
     <use x='1045.000'
