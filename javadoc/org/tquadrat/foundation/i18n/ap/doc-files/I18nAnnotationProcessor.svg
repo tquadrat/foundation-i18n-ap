@@ -7,7 +7,7 @@
      version='1.1'
      baseProfile='full'
      width='3570.000'
-     height='1358.000'>
+     height='1424.000'>
     <defs>
         <style><![CDATA[
             line
@@ -170,7 +170,7 @@
         </symbol>
         <clipPath id='ID000002'>
             <rect class='externalClass'
-                  height='392.000'
+                  height='425.000'
                   width='1456.000'
                   x='0.000'
                   y='0.000'/>
@@ -181,7 +181,7 @@
                     <rect x='0.000'
                           y='0.000'
                           width='1456.000'
-                          height='392.000'
+                          height='425.000'
                           class='externalClass'/>
                     <line x1='0.000'
                           y1='28.000'
@@ -249,22 +249,28 @@
                     <text x='5.000'
                           y='300.000'>+ getTypeUtils():javax.lang.model.util.Types</text>
                     <text x='5.000'
-                          y='311.000'>+ init(arg0:javax.annotation.processing.ProcessingEnvironment):void</text>
+                          y='311.000'>+ isEnumType(arg0:javax.lang.model.type.TypeMirror):boolean</text>
                     <text x='5.000'
-                          y='322.000'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence):void</text>
+                          y='322.000'>+ init(arg0:javax.annotation.processing.ProcessingEnvironment):void</text>
                     <text x='5.000'
-                          y='333.000'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element):void</text>
+                          y='333.000'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence):void</text>
                     <text x='5.000'
-                          y='344.000'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element,arg3:javax.lang.model.element.AnnotationMirror):void</text>
+                          y='344.000'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element):void</text>
                     <text x='5.000'
-                          y='355.000'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element,arg3:javax.lang.model.element.AnnotationMirror,arg4:javax.lang.model.element.AnnotationValue):void</text>
+                          y='355.000'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element,arg3:javax.lang.model.element.AnnotationMirror):void</text>
                     <text x='5.000'
-                          y='366.000'
+                          y='366.000'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element,arg3:javax.lang.model.element.AnnotationMirror,arg4:javax.lang.model.element.AnnotationValue):void</text>
+                    <text x='5.000'
+                          y='377.000'
                           class='abstract'>+ process(arg0:java.util.Set&lt;? extends javax.lang.model.element.TypeElement&gt;,arg1:javax.annotation.processing.RoundEnvironment):boolean</text>
                     <text x='5.000'
-                          y='377.000'># retrieveAnnotatedField(arg0:javax.annotation.processing.RoundEnvironment,arg1:java.lang.Class&lt;? extends java.lang.annotation.Annotation&gt;):java.util.Optional&lt;javax.lang.model.element.VariableElement&gt;</text>
+                          y='388.000'># retrieveAnnotatedField(arg0:javax.annotation.processing.RoundEnvironment,arg1:java.lang.Class&lt;? extends java.lang.annotation.Annotation&gt;):java.util.Optional&lt;javax.lang.model.element.VariableElement&gt;</text>
                     <text x='5.000'
-                          y='388.000'>+ retrieveInterfaces(arg0:javax.lang.model.element.TypeElement,arg1:java.util.Set&lt;? super javax.lang.model.element.TypeElement&gt;):void</text>
+                          y='399.000'>+ retrieveArgumentNames(arg0:javax.lang.model.element.ExecutableElement):java.util.List&lt;javax.lang.model.element.Name&gt;</text>
+                    <text x='5.000'
+                          y='410.000'>+ retrieveGenericTypes(arg0:javax.lang.model.type.TypeMirror):java.util.List&lt;javax.lang.model.type.TypeMirror&gt;</text>
+                    <text x='5.000'
+                          y='421.000'>+ retrieveInterfaces(arg0:javax.lang.model.element.TypeElement,arg1:java.util.Set&lt;? super javax.lang.model.element.TypeElement&gt;):void</text>
                 </g>
             </g>
         </symbol>
@@ -380,7 +386,7 @@
         </symbol>
         <clipPath id='ID000005'>
             <rect class='externalClass'
-                  height='183.000'
+                  height='216.000'
                   width='1282.000'
                   x='0.000'
                   y='0.000'/>
@@ -391,7 +397,7 @@
                     <rect x='0.000'
                           y='0.000'
                           width='1282.000'
-                          height='183.000'
+                          height='216.000'
                           class='externalClass'/>
                     <line x1='0.000'
                           y1='28.000'
@@ -427,15 +433,24 @@
                     <text x='5.000'
                           y='124.000'>&#x2A22; hasAnnotation(arg0:javax.lang.model.element.Element,arg1:java.lang.Class&lt;A&gt;):boolean</text>
                     <text x='5.000'
-                          y='135.000'>&#x2A22; printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence):void</text>
+                          y='135.000'
+                          class='abstract'>+ isEnumType(arg0:javax.lang.model.type.TypeMirror):boolean</text>
                     <text x='5.000'
-                          y='146.000'>&#x2A22; printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element):void</text>
+                          y='146.000'>&#x2A22; printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence):void</text>
                     <text x='5.000'
-                          y='157.000'>&#x2A22; printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element,arg3:javax.lang.model.element.AnnotationMirror):void</text>
+                          y='157.000'>&#x2A22; printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element):void</text>
                     <text x='5.000'
-                          y='168.000'>&#x2A22; printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element,arg3:javax.lang.model.element.AnnotationMirror,arg4:javax.lang.model.element.AnnotationValue):void</text>
+                          y='168.000'>&#x2A22; printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element,arg3:javax.lang.model.element.AnnotationMirror):void</text>
                     <text x='5.000'
-                          y='179.000'>&#x2A22; retrieveInterfaces(arg0:javax.lang.model.element.TypeElement,arg1:java.util.Set&lt;? super javax.lang.model.element.TypeElement&gt;):void</text>
+                          y='179.000'>&#x2A22; printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element,arg3:javax.lang.model.element.AnnotationMirror,arg4:javax.lang.model.element.AnnotationValue):void</text>
+                    <text x='5.000'
+                          y='190.000'
+                          class='abstract'>+ retrieveArgumentNames(arg0:javax.lang.model.element.ExecutableElement):java.util.List&lt;javax.lang.model.element.Name&gt;</text>
+                    <text x='5.000'
+                          y='201.000'
+                          class='abstract'>+ retrieveGenericTypes(arg0:javax.lang.model.type.TypeMirror):java.util.List&lt;? extends javax.lang.model.type.TypeMirror&gt;</text>
+                    <text x='5.000'
+                          y='212.000'>&#x2A22; retrieveInterfaces(arg0:javax.lang.model.element.TypeElement,arg1:java.util.Set&lt;? super javax.lang.model.element.TypeElement&gt;):void</text>
                 </g>
             </g>
         </symbol>
@@ -548,16 +563,16 @@
         </symbol>
     </defs>
     <path class='inheritance'
-          d='M1785.000,1072.000 L1785.000,972.000'
+          d='M1785.000,1138.000 L1785.000,1038.000'
           marker-end='url(#inheritance)'/>
     <path class='inheritance'
-          d='M1735.000,580.000 c0.000,-368.000,-1588.000,0.000,-1588.000,-368.000 v-15'
+          d='M1735.000,613.000 c0.000,-401.000,-1588.000,0.000,-1588.000,-401.000 v-15'
           marker-end='url(#inheritance)'/>
     <path class='implementation'
-          d='M1785.000,580.000 c0.000,-423.000,-738.000,0.000,-738.000,-423.000 v-15'
+          d='M1785.000,613.000 c0.000,-456.000,-738.000,0.000,-738.000,-456.000 v-15'
           marker-end='url(#implementation)'/>
     <path class='implementation'
-          d='M1835.000,580.000 c0.000,-85.000,-50.000,0.000,-50.000,-85.000 v-15'
+          d='M1835.000,613.000 c0.000,-85.000,-50.000,0.000,-50.000,-85.000 v-15'
           marker-end='url(#implementation)'/>
     <path class='inheritance'
           d='M1760.000,297.000 c0.000,-162.000,706.000,0.000,706.000,-162.000 v-15'
@@ -581,9 +596,9 @@
          y='297.000'
          xlink:href='#org.tquadrat.foundation.ap.APHelper'/>
     <use x='1057.000'
-         y='580.000'
+         y='613.000'
          xlink:href='#org.tquadrat.foundation.ap.APBase'/>
     <use x='1045.000'
-         y='1072.000'
+         y='1138.000'
          xlink:href='#org.tquadrat.foundation.i18n.ap.I18nAnnotationProcessor'/>
 </svg>
