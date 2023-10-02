@@ -13,7 +13,7 @@
 <div class="source-container">
 <pre><span class="source-line-no">001</span><span id="line-1">/*</span>
 <span class="source-line-no">002</span><span id="line-2"> * ============================================================================</span>
-<span class="source-line-no">003</span><span id="line-3"> * Copyright © 2002-2021 by Thomas Thrien.</span>
+<span class="source-line-no">003</span><span id="line-3"> * Copyright © 2002-2023 by Thomas Thrien.</span>
 <span class="source-line-no">004</span><span id="line-4"> * All Rights Reserved.</span>
 <span class="source-line-no">005</span><span id="line-5"> * ============================================================================</span>
 <span class="source-line-no">006</span><span id="line-6"> * Licensed to the public under the agreements of the GNU Lesser General Public</span>
@@ -47,136 +47,136 @@
 <span class="source-line-no">034</span><span id="line-34">import static org.tquadrat.foundation.util.JavaUtils.isSetter;</span>
 <span class="source-line-no">035</span><span id="line-35">import static org.tquadrat.foundation.util.JavaUtils.retrievePropertyName;</span>
 <span class="source-line-no">036</span><span id="line-36">import static org.tquadrat.foundation.util.StringUtils.capitalize;</span>
-<span class="source-line-no">037</span><span id="line-37">import static org.tquadrat.foundation.util.StringUtils.format;</span>
-<span class="source-line-no">038</span><span id="line-38">import static org.tquadrat.foundation.util.SystemUtils.retrieveLocale;</span>
-<span class="source-line-no">039</span><span id="line-39"></span>
-<span class="source-line-no">040</span><span id="line-40">import javax.lang.model.element.Element;</span>
-<span class="source-line-no">041</span><span id="line-41">import javax.lang.model.element.ExecutableElement;</span>
-<span class="source-line-no">042</span><span id="line-42">import javax.lang.model.element.TypeElement;</span>
-<span class="source-line-no">043</span><span id="line-43">import javax.lang.model.element.VariableElement;</span>
-<span class="source-line-no">044</span><span id="line-44">import javax.lang.model.util.Elements;</span>
-<span class="source-line-no">045</span><span id="line-45">import javax.lang.model.util.SimpleElementVisitor9;</span>
-<span class="source-line-no">046</span><span id="line-46">import java.util.Locale;</span>
-<span class="source-line-no">047</span><span id="line-47">import java.util.Map;</span>
-<span class="source-line-no">048</span><span id="line-48">import java.util.SortedMap;</span>
-<span class="source-line-no">049</span><span id="line-49">import java.util.TreeMap;</span>
-<span class="source-line-no">050</span><span id="line-50"></span>
-<span class="source-line-no">051</span><span id="line-51">import org.apiguardian.api.API;</span>
-<span class="source-line-no">052</span><span id="line-52">import org.tquadrat.foundation.annotation.ClassVersion;</span>
-<span class="source-line-no">053</span><span id="line-53">import org.tquadrat.foundation.ap.APHelper;</span>
-<span class="source-line-no">054</span><span id="line-54">import org.tquadrat.foundation.ap.IllegalAnnotationError;</span>
-<span class="source-line-no">055</span><span id="line-55">import org.tquadrat.foundation.exception.UnsupportedEnumError;</span>
-<span class="source-line-no">056</span><span id="line-56">import org.tquadrat.foundation.i18n.Message;</span>
-<span class="source-line-no">057</span><span id="line-57">import org.tquadrat.foundation.i18n.Text;</span>
-<span class="source-line-no">058</span><span id="line-58">import org.tquadrat.foundation.i18n.TextUse;</span>
-<span class="source-line-no">059</span><span id="line-59">import org.tquadrat.foundation.i18n.Texts;</span>
-<span class="source-line-no">060</span><span id="line-60">import org.tquadrat.foundation.i18n.Translation;</span>
-<span class="source-line-no">061</span><span id="line-61"></span>
-<span class="source-line-no">062</span><span id="line-62">/**</span>
-<span class="source-line-no">063</span><span id="line-63"> *  A visitor class that collects the texts for resource bundle properties</span>
-<span class="source-line-no">064</span><span id="line-64"> *  files from the annotations.</span>
-<span class="source-line-no">065</span><span id="line-65"> *</span>
-<span class="source-line-no">066</span><span id="line-66"> *  @extauthor Thomas Thrien - thomas.thrien@tquadrat.org</span>
-<span class="source-line-no">067</span><span id="line-67"> *  @version $Id: TextCollector.java 933 2021-07-03 13:32:17Z tquadrat $</span>
-<span class="source-line-no">068</span><span id="line-68"> *  @since 0.0.2</span>
-<span class="source-line-no">069</span><span id="line-69"> *</span>
-<span class="source-line-no">070</span><span id="line-70"> *  @UMLGraph.link</span>
-<span class="source-line-no">071</span><span id="line-71"> */</span>
-<span class="source-line-no">072</span><span id="line-72">@ClassVersion( sourceVersion = "$Id: TextCollector.java 933 2021-07-03 13:32:17Z tquadrat $" )</span>
-<span class="source-line-no">073</span><span id="line-73">@API( status = INTERNAL, since = "0.1.0" )</span>
-<span class="source-line-no">074</span><span id="line-74">public class TextCollector extends SimpleElementVisitor9&lt;Void,Map&lt;Locale,SortedMap&lt;String,TextEntry&gt;&gt;&gt;</span>
-<span class="source-line-no">075</span><span id="line-75">{</span>
-<span class="source-line-no">076</span><span id="line-76">        /*------------*\</span>
-<span class="source-line-no">077</span><span id="line-77">    ====** Attributes **=======================================================</span>
-<span class="source-line-no">078</span><span id="line-78">        \*------------*/</span>
-<span class="source-line-no">079</span><span id="line-79">    /**</span>
-<span class="source-line-no">080</span><span id="line-80">     *  Some helper utilities for the work with</span>
-<span class="source-line-no">081</span><span id="line-81">     *  {@link Element}</span>
-<span class="source-line-no">082</span><span id="line-82">     *  instances.</span>
-<span class="source-line-no">083</span><span id="line-83">     */</span>
-<span class="source-line-no">084</span><span id="line-84">    private final Elements m_ElementUtils;</span>
-<span class="source-line-no">085</span><span id="line-85"></span>
-<span class="source-line-no">086</span><span id="line-86">    /**</span>
-<span class="source-line-no">087</span><span id="line-87">     *  The prefix for the message ids.</span>
-<span class="source-line-no">088</span><span id="line-88">     */</span>
-<span class="source-line-no">089</span><span id="line-89">    private final String m_MessagePrefix;</span>
-<span class="source-line-no">090</span><span id="line-90"></span>
-<span class="source-line-no">091</span><span id="line-91">    /**</span>
-<span class="source-line-no">092</span><span id="line-92">     *  The processing environment.</span>
-<span class="source-line-no">093</span><span id="line-93">     */</span>
-<span class="source-line-no">094</span><span id="line-94">    private final APHelper m_Environment;</span>
-<span class="source-line-no">095</span><span id="line-95"></span>
-<span class="source-line-no">096</span><span id="line-96">        /*--------------*\</span>
-<span class="source-line-no">097</span><span id="line-97">    ====** Constructors **=====================================================</span>
-<span class="source-line-no">098</span><span id="line-98">        \*--------------*/</span>
-<span class="source-line-no">099</span><span id="line-99">    /**</span>
-<span class="source-line-no">100</span><span id="line-100">     *  Creates a new {@code TextCollector} instance.</span>
-<span class="source-line-no">101</span><span id="line-101">     *</span>
-<span class="source-line-no">102</span><span id="line-102">     *  @param  environment The processing environment for the annotation</span>
-<span class="source-line-no">103</span><span id="line-103">     *      processor.</span>
-<span class="source-line-no">104</span><span id="line-104">     *  @param  messagePrefix   The configured message prefix.</span>
-<span class="source-line-no">105</span><span id="line-105">     */</span>
-<span class="source-line-no">106</span><span id="line-106">    public TextCollector( final APHelper environment, final String messagePrefix )</span>
-<span class="source-line-no">107</span><span id="line-107">    {</span>
-<span class="source-line-no">108</span><span id="line-108">        m_Environment = requireNonNullArgument( environment, "environment" );</span>
-<span class="source-line-no">109</span><span id="line-109">        m_ElementUtils = m_Environment.getElementUtils();</span>
-<span class="source-line-no">110</span><span id="line-110"></span>
-<span class="source-line-no">111</span><span id="line-111">        m_MessagePrefix = requireNotEmptyArgument( messagePrefix, "messagePrefix" );</span>
-<span class="source-line-no">112</span><span id="line-112">    }   // TextCollector()</span>
-<span class="source-line-no">113</span><span id="line-113"></span>
-<span class="source-line-no">114</span><span id="line-114">        /*---------*\</span>
-<span class="source-line-no">115</span><span id="line-115">    ====** Methods **==========================================================</span>
-<span class="source-line-no">116</span><span id="line-116">        \*---------*/</span>
-<span class="source-line-no">117</span><span id="line-117">    /**</span>
-<span class="source-line-no">118</span><span id="line-118">     *  Adds the text entries to the texts map.</span>
-<span class="source-line-no">119</span><span id="line-119">     *</span>
-<span class="source-line-no">120</span><span id="line-120">     *  @param  texts   The texts map.</span>
-<span class="source-line-no">121</span><span id="line-121">     *  @param  element The annotated element.</span>
-<span class="source-line-no">122</span><span id="line-122">     *  @param  key The resource bundle key.</span>
-<span class="source-line-no">123</span><span id="line-123">     *  @param  description The description for the text.</span>
-<span class="source-line-no">124</span><span id="line-124">     *  @param  className   The fully qualified name of the class that defines</span>
-<span class="source-line-no">125</span><span id="line-125">     *      the text.</span>
-<span class="source-line-no">126</span><span id="line-126">     *  @param  isMessage   {@code true} if the text is a message,</span>
-<span class="source-line-no">127</span><span id="line-127">     *      {@code false} otherwise.</span>
-<span class="source-line-no">128</span><span id="line-128">     *  @param  translations    The texts in the various languages.</span>
-<span class="source-line-no">129</span><span id="line-129">     */</span>
-<span class="source-line-no">130</span><span id="line-130">    @SuppressWarnings( {"MethodCanBeVariableArityMethod", "OptionalGetWithoutIsPresent"} )</span>
-<span class="source-line-no">131</span><span id="line-131">    private final void addTextEntry( @SuppressWarnings( "BoundedWildcard" ) final Map&lt;Locale,SortedMap&lt;String,TextEntry&gt;&gt; texts, final Element element, final String key, final String description, final String className, final boolean isMessage, final Translation [] translations )</span>
-<span class="source-line-no">132</span><span id="line-132">    {</span>
-<span class="source-line-no">133</span><span id="line-133">        for( final var translation : requireNonNullArgument( translations, "translations" ) )</span>
-<span class="source-line-no">134</span><span id="line-134">        {</span>
-<span class="source-line-no">135</span><span id="line-135">            //---* Create the entry *------------------------------------------</span>
-<span class="source-line-no">136</span><span id="line-136">            final var locale = retrieveLocale( translation.language() ).get();</span>
-<span class="source-line-no">137</span><span id="line-137">            final var text = translation.text();</span>
-<span class="source-line-no">138</span><span id="line-138">            final var entry = new TextEntry( key, isMessage, locale, description, text, className );</span>
-<span class="source-line-no">139</span><span id="line-139"></span>
-<span class="source-line-no">140</span><span id="line-140">            //---* Get the text map *------------------------------------------</span>
-<span class="source-line-no">141</span><span id="line-141">            final var textMap = texts.computeIfAbsent( locale, k -&gt; new TreeMap&lt;&gt;() );</span>
-<span class="source-line-no">142</span><span id="line-142"></span>
-<span class="source-line-no">143</span><span id="line-143">            //---* Add the entry *---------------------------------------------</span>
-<span class="source-line-no">144</span><span id="line-144">            if( textMap.containsKey( key ) )</span>
-<span class="source-line-no">145</span><span id="line-145">            {</span>
-<span class="source-line-no">146</span><span id="line-146">                final var message = format(</span>
-<span class="source-line-no">147</span><span id="line-147">                    """</span>
-<span class="source-line-no">148</span><span id="line-148">                    Key '%s' is not unique (Annotation: %s in class '%s')</span>
-<span class="source-line-no">149</span><span id="line-149">                    Check translation locale in case the key is not a real duplicate""",</span>
-<span class="source-line-no">150</span><span id="line-150">                    key, isMessage ? "@Message" : "@Text", className );</span>
-<span class="source-line-no">151</span><span id="line-151">                m_Environment.printMessage( ERROR, message, element );</span>
-<span class="source-line-no">152</span><span id="line-152">                throw new IllegalAnnotationError( message );</span>
-<span class="source-line-no">153</span><span id="line-153">            }</span>
-<span class="source-line-no">154</span><span id="line-154">            textMap.put( key, entry );</span>
-<span class="source-line-no">155</span><span id="line-155">        }</span>
-<span class="source-line-no">156</span><span id="line-156">    }   //  addTextEntry()</span>
-<span class="source-line-no">157</span><span id="line-157"></span>
-<span class="source-line-no">158</span><span id="line-158">    /**</span>
-<span class="source-line-no">159</span><span id="line-159">     *  Processes a text annotation.</span>
-<span class="source-line-no">160</span><span id="line-160">     *</span>
-<span class="source-line-no">161</span><span id="line-161">     *  @param  texts   The texts map.</span>
-<span class="source-line-no">162</span><span id="line-162">     *  @param  element The annotated element.</span>
-<span class="source-line-no">163</span><span id="line-163">     *  @param  annotation  The text annotation.</span>
-<span class="source-line-no">164</span><span id="line-164">     *  @param  className   The fully qualified name of the class that defines</span>
-<span class="source-line-no">165</span><span id="line-165">     *      the text.</span>
-<span class="source-line-no">166</span><span id="line-166">     */</span>
+<span class="source-line-no">037</span><span id="line-37">import static org.tquadrat.foundation.util.SystemUtils.retrieveLocale;</span>
+<span class="source-line-no">038</span><span id="line-38"></span>
+<span class="source-line-no">039</span><span id="line-39">import javax.lang.model.element.Element;</span>
+<span class="source-line-no">040</span><span id="line-40">import javax.lang.model.element.ExecutableElement;</span>
+<span class="source-line-no">041</span><span id="line-41">import javax.lang.model.element.TypeElement;</span>
+<span class="source-line-no">042</span><span id="line-42">import javax.lang.model.element.VariableElement;</span>
+<span class="source-line-no">043</span><span id="line-43">import javax.lang.model.util.Elements;</span>
+<span class="source-line-no">044</span><span id="line-44">import javax.lang.model.util.SimpleElementVisitor9;</span>
+<span class="source-line-no">045</span><span id="line-45">import java.util.Locale;</span>
+<span class="source-line-no">046</span><span id="line-46">import java.util.Map;</span>
+<span class="source-line-no">047</span><span id="line-47">import java.util.SortedMap;</span>
+<span class="source-line-no">048</span><span id="line-48">import java.util.TreeMap;</span>
+<span class="source-line-no">049</span><span id="line-49"></span>
+<span class="source-line-no">050</span><span id="line-50">import org.apiguardian.api.API;</span>
+<span class="source-line-no">051</span><span id="line-51">import org.tquadrat.foundation.annotation.ClassVersion;</span>
+<span class="source-line-no">052</span><span id="line-52">import org.tquadrat.foundation.ap.APHelper;</span>
+<span class="source-line-no">053</span><span id="line-53">import org.tquadrat.foundation.ap.IllegalAnnotationError;</span>
+<span class="source-line-no">054</span><span id="line-54">import org.tquadrat.foundation.exception.UnsupportedEnumError;</span>
+<span class="source-line-no">055</span><span id="line-55">import org.tquadrat.foundation.i18n.Message;</span>
+<span class="source-line-no">056</span><span id="line-56">import org.tquadrat.foundation.i18n.Text;</span>
+<span class="source-line-no">057</span><span id="line-57">import org.tquadrat.foundation.i18n.TextUse;</span>
+<span class="source-line-no">058</span><span id="line-58">import org.tquadrat.foundation.i18n.Texts;</span>
+<span class="source-line-no">059</span><span id="line-59">import org.tquadrat.foundation.i18n.Translation;</span>
+<span class="source-line-no">060</span><span id="line-60"></span>
+<span class="source-line-no">061</span><span id="line-61">/**</span>
+<span class="source-line-no">062</span><span id="line-62"> *  A visitor class that collects the texts for resource bundle properties</span>
+<span class="source-line-no">063</span><span id="line-63"> *  files from the annotations.</span>
+<span class="source-line-no">064</span><span id="line-64"> *</span>
+<span class="source-line-no">065</span><span id="line-65"> *  @extauthor Thomas Thrien - thomas.thrien@tquadrat.org</span>
+<span class="source-line-no">066</span><span id="line-66"> *  @version $Id: TextCollector.java 1062 2023-09-25 23:11:41Z tquadrat $</span>
+<span class="source-line-no">067</span><span id="line-67"> *  @since 0.0.2</span>
+<span class="source-line-no">068</span><span id="line-68"> *</span>
+<span class="source-line-no">069</span><span id="line-69"> *  @UMLGraph.link</span>
+<span class="source-line-no">070</span><span id="line-70"> */</span>
+<span class="source-line-no">071</span><span id="line-71">@ClassVersion( sourceVersion = "$Id: TextCollector.java 1062 2023-09-25 23:11:41Z tquadrat $" )</span>
+<span class="source-line-no">072</span><span id="line-72">@API( status = INTERNAL, since = "0.1.0" )</span>
+<span class="source-line-no">073</span><span id="line-73">public class TextCollector extends SimpleElementVisitor9&lt;Void,Map&lt;Locale,SortedMap&lt;String,TextEntry&gt;&gt;&gt;</span>
+<span class="source-line-no">074</span><span id="line-74">{</span>
+<span class="source-line-no">075</span><span id="line-75">        /*------------*\</span>
+<span class="source-line-no">076</span><span id="line-76">    ====** Attributes **=======================================================</span>
+<span class="source-line-no">077</span><span id="line-77">        \*------------*/</span>
+<span class="source-line-no">078</span><span id="line-78">    /**</span>
+<span class="source-line-no">079</span><span id="line-79">     *  Some helper utilities for the work with</span>
+<span class="source-line-no">080</span><span id="line-80">     *  {@link Element}</span>
+<span class="source-line-no">081</span><span id="line-81">     *  instances.</span>
+<span class="source-line-no">082</span><span id="line-82">     */</span>
+<span class="source-line-no">083</span><span id="line-83">    private final Elements m_ElementUtils;</span>
+<span class="source-line-no">084</span><span id="line-84"></span>
+<span class="source-line-no">085</span><span id="line-85">    /**</span>
+<span class="source-line-no">086</span><span id="line-86">     *  The prefix for the message ids.</span>
+<span class="source-line-no">087</span><span id="line-87">     */</span>
+<span class="source-line-no">088</span><span id="line-88">    private final String m_MessagePrefix;</span>
+<span class="source-line-no">089</span><span id="line-89"></span>
+<span class="source-line-no">090</span><span id="line-90">    /**</span>
+<span class="source-line-no">091</span><span id="line-91">     *  The processing environment.</span>
+<span class="source-line-no">092</span><span id="line-92">     */</span>
+<span class="source-line-no">093</span><span id="line-93">    private final APHelper m_Environment;</span>
+<span class="source-line-no">094</span><span id="line-94"></span>
+<span class="source-line-no">095</span><span id="line-95">        /*--------------*\</span>
+<span class="source-line-no">096</span><span id="line-96">    ====** Constructors **=====================================================</span>
+<span class="source-line-no">097</span><span id="line-97">        \*--------------*/</span>
+<span class="source-line-no">098</span><span id="line-98">    /**</span>
+<span class="source-line-no">099</span><span id="line-99">     *  Creates a new {@code TextCollector} instance.</span>
+<span class="source-line-no">100</span><span id="line-100">     *</span>
+<span class="source-line-no">101</span><span id="line-101">     *  @param  environment The processing environment for the annotation</span>
+<span class="source-line-no">102</span><span id="line-102">     *      processor.</span>
+<span class="source-line-no">103</span><span id="line-103">     *  @param  messagePrefix   The configured message prefix.</span>
+<span class="source-line-no">104</span><span id="line-104">     */</span>
+<span class="source-line-no">105</span><span id="line-105">    public TextCollector( final APHelper environment, final String messagePrefix )</span>
+<span class="source-line-no">106</span><span id="line-106">    {</span>
+<span class="source-line-no">107</span><span id="line-107">        m_Environment = requireNonNullArgument( environment, "environment" );</span>
+<span class="source-line-no">108</span><span id="line-108">        m_ElementUtils = m_Environment.getElementUtils();</span>
+<span class="source-line-no">109</span><span id="line-109"></span>
+<span class="source-line-no">110</span><span id="line-110">        m_MessagePrefix = requireNotEmptyArgument( messagePrefix, "messagePrefix" );</span>
+<span class="source-line-no">111</span><span id="line-111">    }   // TextCollector()</span>
+<span class="source-line-no">112</span><span id="line-112"></span>
+<span class="source-line-no">113</span><span id="line-113">        /*---------*\</span>
+<span class="source-line-no">114</span><span id="line-114">    ====** Methods **==========================================================</span>
+<span class="source-line-no">115</span><span id="line-115">        \*---------*/</span>
+<span class="source-line-no">116</span><span id="line-116">    /**</span>
+<span class="source-line-no">117</span><span id="line-117">     *  Adds the text entries to the texts map.</span>
+<span class="source-line-no">118</span><span id="line-118">     *</span>
+<span class="source-line-no">119</span><span id="line-119">     *  @param  texts   The texts map.</span>
+<span class="source-line-no">120</span><span id="line-120">     *  @param  element The annotated element.</span>
+<span class="source-line-no">121</span><span id="line-121">     *  @param  key The resource bundle key.</span>
+<span class="source-line-no">122</span><span id="line-122">     *  @param  description The description for the text.</span>
+<span class="source-line-no">123</span><span id="line-123">     *  @param  className   The fully qualified name of the class that defines</span>
+<span class="source-line-no">124</span><span id="line-124">     *      the text.</span>
+<span class="source-line-no">125</span><span id="line-125">     *  @param  isMessage   {@code true} if the text is a message,</span>
+<span class="source-line-no">126</span><span id="line-126">     *      {@code false} otherwise.</span>
+<span class="source-line-no">127</span><span id="line-127">     *  @param  translations    The texts in the various languages.</span>
+<span class="source-line-no">128</span><span id="line-128">     */</span>
+<span class="source-line-no">129</span><span id="line-129">    @SuppressWarnings( {"MethodCanBeVariableArityMethod", "OptionalGetWithoutIsPresent", "MethodWithTooManyParameters"} )</span>
+<span class="source-line-no">130</span><span id="line-130">    private final void addTextEntry( @SuppressWarnings( "BoundedWildcard" ) final Map&lt;Locale,SortedMap&lt;String,TextEntry&gt;&gt; texts, final Element element, final String key, final String description, final String className, final boolean isMessage, final Translation [] translations )</span>
+<span class="source-line-no">131</span><span id="line-131">    {</span>
+<span class="source-line-no">132</span><span id="line-132">        for( final var translation : requireNonNullArgument( translations, "translations" ) )</span>
+<span class="source-line-no">133</span><span id="line-133">        {</span>
+<span class="source-line-no">134</span><span id="line-134">            //---* Create the entry *------------------------------------------</span>
+<span class="source-line-no">135</span><span id="line-135">            final var locale = retrieveLocale( translation.language() ).get();</span>
+<span class="source-line-no">136</span><span id="line-136">            final var text = translation.text();</span>
+<span class="source-line-no">137</span><span id="line-137">            final var entry = new TextEntry( key, isMessage, locale, description, text, className );</span>
+<span class="source-line-no">138</span><span id="line-138"></span>
+<span class="source-line-no">139</span><span id="line-139">            //---* Get the text map *------------------------------------------</span>
+<span class="source-line-no">140</span><span id="line-140">            final var textMap = texts.computeIfAbsent( locale, currentLocale -&gt; new TreeMap&lt;&gt;() );</span>
+<span class="source-line-no">141</span><span id="line-141"></span>
+<span class="source-line-no">142</span><span id="line-142">            //---* Add the entry *---------------------------------------------</span>
+<span class="source-line-no">143</span><span id="line-143">            if( textMap.containsKey( key ) )</span>
+<span class="source-line-no">144</span><span id="line-144">            {</span>
+<span class="source-line-no">145</span><span id="line-145">                final var message =</span>
+<span class="source-line-no">146</span><span id="line-146">                    """</span>
+<span class="source-line-no">147</span><span id="line-147">                    Key '%s' is not unique (Annotation: %s in class '%s')</span>
+<span class="source-line-no">148</span><span id="line-148">                    Check translation locale in case the key is not a real duplicate"""</span>
+<span class="source-line-no">149</span><span id="line-149">                        .formatted( key, isMessage ? "@Message" : "@Text", className );</span>
+<span class="source-line-no">150</span><span id="line-150">                m_Environment.printMessage( ERROR, message, element );</span>
+<span class="source-line-no">151</span><span id="line-151">                throw new IllegalAnnotationError( message );</span>
+<span class="source-line-no">152</span><span id="line-152">            }</span>
+<span class="source-line-no">153</span><span id="line-153">            textMap.put( key, entry );</span>
+<span class="source-line-no">154</span><span id="line-154">        }</span>
+<span class="source-line-no">155</span><span id="line-155">    }   //  addTextEntry()</span>
+<span class="source-line-no">156</span><span id="line-156"></span>
+<span class="source-line-no">157</span><span id="line-157">    /**</span>
+<span class="source-line-no">158</span><span id="line-158">     *  Processes a text annotation.</span>
+<span class="source-line-no">159</span><span id="line-159">     *</span>
+<span class="source-line-no">160</span><span id="line-160">     *  @param  texts   The texts map.</span>
+<span class="source-line-no">161</span><span id="line-161">     *  @param  element The annotated element.</span>
+<span class="source-line-no">162</span><span id="line-162">     *  @param  annotation  The text annotation.</span>
+<span class="source-line-no">163</span><span id="line-163">     *  @param  className   The fully qualified name of the class that defines</span>
+<span class="source-line-no">164</span><span id="line-164">     *      the text.</span>
+<span class="source-line-no">165</span><span id="line-165">     */</span>
+<span class="source-line-no">166</span><span id="line-166">    @SuppressWarnings( {"OverlyNestedMethod", "OverlyComplexMethod"} )</span>
 <span class="source-line-no">167</span><span id="line-167">    private final void processTextAnnotation( final Map&lt;Locale,SortedMap&lt;String,TextEntry&gt;&gt; texts, final Element element, final Text annotation, final String className )</span>
 <span class="source-line-no">168</span><span id="line-168">    {</span>
 <span class="source-line-no">169</span><span id="line-169">        //---* The description of the text *-----------------------------------</span>
@@ -208,7 +208,7 @@
 <span class="source-line-no">195</span><span id="line-195">                    }</span>
 <span class="source-line-no">196</span><span id="line-196">                    else</span>
 <span class="source-line-no">197</span><span id="line-197">                    {</span>
-<span class="source-line-no">198</span><span id="line-198">                        final var message = format( "Missing id for Element '%s'", element.getSimpleName().toString() );</span>
+<span class="source-line-no">198</span><span id="line-198">                        final var message = "Missing id for Element '%s'".formatted( element.getSimpleName().toString() );</span>
 <span class="source-line-no">199</span><span id="line-199">                        m_Environment.printMessage( ERROR, message, element );</span>
 <span class="source-line-no">200</span><span id="line-200">                        throw new IllegalAnnotationError( message );</span>
 <span class="source-line-no">201</span><span id="line-201">                    }</span>
@@ -239,7 +239,7 @@
 <span class="source-line-no">226</span><span id="line-226">                            }</span>
 <span class="source-line-no">227</span><span id="line-227">                            catch( final IllegalArgumentException e )</span>
 <span class="source-line-no">228</span><span id="line-228">                            {</span>
-<span class="source-line-no">229</span><span id="line-229">                                final var message = format( "Id '%s' is invalid: %s", id, e.toString() );</span>
+<span class="source-line-no">229</span><span id="line-229">                                final var message = "Id '%s' is invalid: %s".formatted( id, e.toString() );</span>
 <span class="source-line-no">230</span><span id="line-230">                                m_Environment.printMessage( ERROR, message, element );</span>
 <span class="source-line-no">231</span><span id="line-231">                                throw new IllegalAnnotationError( message, e );</span>
 <span class="source-line-no">232</span><span id="line-232">                            }</span>
@@ -328,7 +328,7 @@
 <span class="source-line-no">315</span><span id="line-315"></span>
 <span class="source-line-no">316</span><span id="line-316">                //---* The message id *----------------------------------------</span>
 <span class="source-line-no">317</span><span id="line-317">                String key = null;</span>
-<span class="source-line-no">318</span><span id="line-318">                if( value instanceof Integer msgId )</span>
+<span class="source-line-no">318</span><span id="line-318">                if( value instanceof final Integer msgId )</span>
 <span class="source-line-no">319</span><span id="line-319">                {</span>
 <span class="source-line-no">320</span><span id="line-320">                    key = composeMessageKey( m_MessagePrefix, msgId.intValue() );</span>
 <span class="source-line-no">321</span><span id="line-321">                }</span>

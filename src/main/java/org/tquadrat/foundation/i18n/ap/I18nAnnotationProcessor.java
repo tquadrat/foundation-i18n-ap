@@ -1,6 +1,6 @@
 /*
  * ============================================================================
- *  Copyright © 2002-2021 by Thomas Thrien.
+ *  Copyright © 2002-2023 by Thomas Thrien.
  *  All Rights Reserved.
  * ============================================================================
  *  Licensed to the public under the agreements of the GNU Lesser General Public
@@ -17,6 +17,7 @@
 
 package org.tquadrat.foundation.i18n.ap;
 
+import static java.lang.String.format;
 import static java.lang.String.join;
 import static java.text.Normalizer.Form.NFKC;
 import static java.util.Locale.ENGLISH;
@@ -37,7 +38,6 @@ import static org.tquadrat.foundation.lang.CommonConstants.ISO8859_1;
 import static org.tquadrat.foundation.lang.Objects.nonNull;
 import static org.tquadrat.foundation.lang.Objects.requireNonNullArgument;
 import static org.tquadrat.foundation.util.CharSetUtils.convertUnicodeToASCII;
-import static org.tquadrat.foundation.util.StringUtils.format;
 import static org.tquadrat.foundation.util.StringUtils.isEmptyOrBlank;
 import static org.tquadrat.foundation.util.StringUtils.isNotEmptyOrBlank;
 import static org.tquadrat.foundation.util.StringUtils.splitString;
@@ -91,12 +91,12 @@ import org.xml.sax.SAXException;
  *  The annotation processor for the module {@code org.tquadrat.foundation.i18n}.
  *
  *  @extauthor Thomas Thrien - thomas.thrien@tquadrat.org
- *  @version $Id: I18nAnnotationProcessor.java 997 2022-01-26 14:55:05Z tquadrat $
+ *  @version $Id: I18nAnnotationProcessor.java 1062 2023-09-25 23:11:41Z tquadrat $
  *  @since 0.0.1
  *
  *  @UMLGraph.link
  */
-@ClassVersion( sourceVersion = "$Id: I18nAnnotationProcessor.java 997 2022-01-26 14:55:05Z tquadrat $" )
+@ClassVersion( sourceVersion = "$Id: I18nAnnotationProcessor.java 1062 2023-09-25 23:11:41Z tquadrat $" )
 @API( status = STABLE, since = "0.0.1" )
 @SupportedSourceVersion( SourceVersion.RELEASE_17 )
 @SupportedOptions( { APBase.ADD_DEBUG_OUTPUT, APBase.MAVEN_GOAL, ADDITIONAL_TEXT_LOCATION } )
@@ -140,7 +140,7 @@ public class I18nAnnotationProcessor extends APBase
      *  @param  texts    The texts.
      *  @param  elements    The annotated elements.
      */
-    @SuppressWarnings( {"NestedTryStatement", "AssignmentToNull", "OptionalUsedAsFieldOrParameterType"} )
+    @SuppressWarnings( {"NestedTryStatement", "OptionalUsedAsFieldOrParameterType", "OverlyComplexMethod"} )
     private final void generateResourceBundle( final Optional<String> textFileLocation, final Map<Locale,SortedMap<String,TextEntry>> texts, final Element... elements )
     {
         final var filer = getFiler();
@@ -163,17 +163,17 @@ public class I18nAnnotationProcessor extends APBase
         }
         catch( final IOException e )
         {
-            printMessage( ERROR, format( "Unable to read file '%s': %s", ADDITIONAL_TEXT_FILE, e.getMessage() ) );
+            printMessage( ERROR, "Unable to read file '%s': %s".formatted( ADDITIONAL_TEXT_FILE, e.getMessage() ) );
             throw new AnnotationProcessingError( e );
         }
         catch( final SAXException e )
         {
-            printMessage( ERROR, format( "Unable to parse file '%s': %s", ADDITIONAL_TEXT_FILE, e.getMessage() ) );
+            printMessage( ERROR, "Unable to parse file '%s': %s".formatted( ADDITIONAL_TEXT_FILE, e.getMessage() ) );
             throw new AnnotationProcessingError( e );
         }
         catch( final ParserConfigurationException e )
         {
-            printMessage( ERROR, format( "Unable to create SAXParser: %s", e.getMessage() ) );
+            printMessage( ERROR, "Unable to create SAXParser: %s".formatted( e.getMessage() ) );
             throw new AnnotationProcessingError( e );
         }
 
@@ -207,7 +207,7 @@ public class I18nAnnotationProcessor extends APBase
             {
                 final var bundleFile = filer.createResource( SOURCE_OUTPUT, EMPTY_STRING, pathName, elements );
                 pathName = bundleFile.toUri().toString();
-                printMessage( NOTE, format( "Creating Resource File: %s", pathName ) );
+                printMessage( NOTE, "Creating Resource File: %s".formatted( pathName ) );
                 try( final var writer = new OutputStreamWriter( bundleFile.openOutputStream(), ISO8859_1 ) )
                 {
                     writeResourceBundleFile( localeEntries.getValue().values(), writer );
@@ -215,7 +215,7 @@ public class I18nAnnotationProcessor extends APBase
             }
             catch( final IOException e )
             {
-                printMessage( ERROR, format( "Unable to write resource bundle file '%s': %s", pathName, e.getMessage() ) );
+                printMessage( ERROR, "Unable to write resource bundle file '%s': %s".formatted( pathName, e.getMessage() ) );
                 throw new AnnotationProcessingError( e );
             }
 
@@ -229,7 +229,7 @@ public class I18nAnnotationProcessor extends APBase
             {
                 final var bundleFile = filer.createResource( CLASS_OUTPUT, EMPTY_STRING, pathName, elements );
                 pathName = bundleFile.toUri().toString();
-                printMessage( NOTE, format( "Creating Resource File: %s", pathName ) );
+                printMessage( NOTE, "Creating Resource File: %s".formatted( pathName ) );
                 try( final var writer = new OutputStreamWriter( bundleFile.openOutputStream(), ISO8859_1 ) )
                 {
                     writeResourceBundleFile( localeEntries.getValue().values(), writer );
@@ -237,7 +237,7 @@ public class I18nAnnotationProcessor extends APBase
             }
             catch( final IOException e )
             {
-                printMessage( ERROR, format( "Unable to write resource bundle file '%s': %s", pathName, e.getMessage() ) );
+                printMessage( ERROR, "Unable to write resource bundle file '%s': %s".formatted( pathName, e.getMessage() ) );
                 throw new AnnotationProcessingError( e );
             }
         }   //  LocaleLoop:
@@ -290,6 +290,7 @@ public class I18nAnnotationProcessor extends APBase
     /**
      *  {@inheritDoc}
      */
+    @SuppressWarnings( "OverlyComplexMethod" )
     @Override
     public final boolean process( final Set<? extends TypeElement> annotations, final RoundEnvironment roundEnvironment )
     {
@@ -328,7 +329,7 @@ public class I18nAnnotationProcessor extends APBase
                 if( annotations.stream()
                     .map( TypeElement::getQualifiedName )
                     .map( Object::toString )
-                    .anyMatch( n -> n.equals( Texts.class.getName() ) || n.equals( Text.class.getName() ) || n.equals( Message.class.getName() ) ) )
+                    .anyMatch( name -> name.equals( Texts.class.getName() ) || name.equals( Text.class.getName() ) || name.equals( Message.class.getName() ) ) )
                 {
                     final var textCollector = new TextCollector( this, nonNull( m_MessagePrefix ) ? m_MessagePrefix : DEFAULT_MESSAGE_PREFIX );
                     for( final var element : roundEnvironment.getElementsAnnotatedWith( Message.class ) )
@@ -379,7 +380,7 @@ public class I18nAnnotationProcessor extends APBase
                     }
                 default ->
                 {
-                    final var msg = format( MSG_MultipleElements, UseAdditionalTexts.class.getSimpleName() );
+                    final var msg = format( MSG_MultipleElements, EMPTY_STRING, UseAdditionalTexts.class.getSimpleName() );
                     printMessage( ERROR, msg );
                     throw new IllegalAnnotationError( msg, UseAdditionalTexts.class );
                 }
@@ -429,12 +430,12 @@ public class I18nAnnotationProcessor extends APBase
                         retValue = Optional.of( new InputSource( inputStream ) );
 
                         textFileName = textFile.toURI().toURL().toExternalForm();
-                        printMessage( NOTE, format( "Reading additional texts from '%s' (configured location)", textFileName ) );
+                        printMessage( NOTE, "Reading additional texts from '%s' (configured location)".formatted( textFileName ) );
                     }
                 }
-                catch( @SuppressWarnings( "OverlyBroadCatchBlock" ) final IOException e )
+                catch( @SuppressWarnings( "OverlyBroadCatchBlock" ) final IOException ignored )
                 {
-                    printMessage( NOTE, format( "Cannot open file '%s' with additional texts", textFileName ) );
+                    printMessage( NOTE, "Cannot open file '%s' with additional texts".formatted( textFileName ) );
                 }
             }
         }
@@ -478,12 +479,12 @@ public class I18nAnnotationProcessor extends APBase
                     retValue = Optional.of( new InputSource( inputStream ) );
 
                     textFileName = textFile.toURI().toURL().toExternalForm();
-                    printMessage( NOTE, format( "Reading additional texts from '%s' (provided location)", textFileName ) );
+                    printMessage( NOTE, "Reading additional texts from '%s' (provided location)".formatted( textFileName ) );
                 }
             }
-            catch( @SuppressWarnings( "OverlyBroadCatchBlock" ) final IOException e )
+            catch( @SuppressWarnings( "OverlyBroadCatchBlock" ) final IOException ignored )
             {
-                printMessage( NOTE, format( "Cannot open file '%s' with additional texts", textFileName ) );
+                printMessage( NOTE, "Cannot open file '%s' with additional texts".formatted( textFileName ) );
             }
         }
 
@@ -516,9 +517,9 @@ public class I18nAnnotationProcessor extends APBase
         {
             textFile = filer.getResource( SOURCE_PATH, EMPTY_STRING, ADDITIONAL_TEXT_FILE );
         }
-        catch( @SuppressWarnings( "unused" ) final IOException e )
+        catch( @SuppressWarnings( "unused" ) final IOException ignored )
         {
-            printMessage( NOTE, format( "Cannot open file '%s' with additional texts", ADDITIONAL_TEXT_FILE ) );
+            printMessage( NOTE, "Cannot open file '%s' with additional texts".formatted( ADDITIONAL_TEXT_FILE ) );
             textFile = null;
         }
         if( nonNull( textFile ) )
@@ -537,11 +538,11 @@ public class I18nAnnotationProcessor extends APBase
                 //---* Create the return value *-------------------------------
                 retValue = Optional.of( inputSource );
 
-                printMessage( NOTE, format( "Reading additional texts from '%s' (source tree)", textFileName ) );
+                printMessage( NOTE, "Reading additional texts from '%s' (source tree)".formatted( textFileName ) );
             }
             catch( @SuppressWarnings( "OverlyBroadCatchBlock" ) final IllegalArgumentException | IOException e )
             {
-                printMessage( ERROR, format( "Unable to read file '%s' with additional texts: %s", textFileName, e.toString() ) );
+                printMessage( ERROR, "Unable to read file '%s' with additional texts: %s".formatted( textFileName, e.toString() ) );
                 throw new AnnotationProcessingError( e );
             }
         }
@@ -558,7 +559,6 @@ public class I18nAnnotationProcessor extends APBase
      *  @param  writer  The target {@code Writer} instance.
      *  @throws IOException Writing the resource bundle file failed.
      */
-    @SuppressWarnings( "resource" )
     private final void writeResourceBundleFile( final Collection<TextEntry> data, final Writer writer ) throws IOException
     {
         requireNonNullArgument( writer, "writer" );

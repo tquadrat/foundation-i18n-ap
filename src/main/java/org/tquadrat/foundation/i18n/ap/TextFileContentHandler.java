@@ -1,6 +1,6 @@
 /*
  * ============================================================================
- * Copyright © 2002-2021 by Thomas Thrien.
+ * Copyright © 2002-2023 by Thomas Thrien.
  * All Rights Reserved.
  * ============================================================================
  * Licensed to the public under the agreements of the GNU Lesser General Public
@@ -40,6 +40,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
@@ -48,12 +49,12 @@ import org.xml.sax.helpers.DefaultHandler;
  *  that handles the files for additional text resources.
  *
  *  @extauthor Thomas Thrien - thomas.thrien@tquadrat.org
- *  @version $Id: TextFileContentHandler.java 887 2021-03-28 19:25:19Z tquadrat $
+ *  @version $Id: TextFileContentHandler.java 1062 2023-09-25 23:11:41Z tquadrat $
  *  @since 0.1.0
  *
  *  @UMLGraph.link
  */
-@ClassVersion( sourceVersion = "$Id: TextFileContentHandler.java 887 2021-03-28 19:25:19Z tquadrat $" )
+@ClassVersion( sourceVersion = "$Id: TextFileContentHandler.java 1062 2023-09-25 23:11:41Z tquadrat $" )
 @API( status = INTERNAL, since = "0.1.0" )
 public final class TextFileContentHandler extends DefaultHandler
 {
@@ -68,6 +69,7 @@ public final class TextFileContentHandler extends DefaultHandler
     /**
      *  The description for the current text entry.
      */
+    @SuppressWarnings( "StringBufferField" )
     private final StringBuilder m_CurrentDescription = new StringBuilder();
 
     /**
@@ -78,6 +80,7 @@ public final class TextFileContentHandler extends DefaultHandler
     /**
      *  The current text.
      */
+    @SuppressWarnings( "StringBufferField" )
     private final StringBuilder m_CurrentText = new StringBuilder();
 
     /**
@@ -137,7 +140,6 @@ public final class TextFileContentHandler extends DefaultHandler
     /**
      *  {@inheritDoc}
      */
-    @SuppressWarnings( "incomplete-switch" )
     @Override
     public final void endElement( final String uri, final String localName, final String qName ) throws SAXException
     {
@@ -168,15 +170,17 @@ public final class TextFileContentHandler extends DefaultHandler
             //---* A text resource description *-------------------------------
             case "translation" ->
             {
-                final var translations = m_Texts.computeIfAbsent( m_CurrentLocale, k -> new TreeMap<>() );
+                final var translations = m_Texts.computeIfAbsent( m_CurrentLocale, locale -> new TreeMap<>() );
                 translations.put( m_CurrentKey, new TextEntry( m_CurrentKey, false, m_CurrentLocale, m_CurrentDescription.toString(), m_CurrentText.toString(), ADDITIONAL_TEXT_FILE ) );
 
                 m_CurrentLocale = null;
                 m_CurrentText.setLength( 0 );
                 m_IsDescription = false;
             }
+
+            default -> throw new SAXParseException( "Unknown element: %s".formatted( localName ), m_Locator );
         }
-    }   //  endElement()
+    }   //  - endElement()
 
     /**
      *  {@inheritDoc}
@@ -225,7 +229,6 @@ public final class TextFileContentHandler extends DefaultHandler
     /**
      *  {@inheritDoc}
      */
-    @SuppressWarnings( {"incomplete-switch", "OptionalGetWithoutIsPresent"} )
     @Override
     public final void startElement( final String uri, final String localName, final String qName, final Attributes attributes ) throws SAXException
     {
@@ -263,9 +266,12 @@ public final class TextFileContentHandler extends DefaultHandler
             {
                 m_CurrentText.setLength( 0 );
                 final var language = attributes.getValue( "language" );
+                //noinspection OptionalGetWithoutIsPresent
                 m_CurrentLocale = retrieveLocale( language ).get();
                 m_IsDescription = false;
             }
+
+            default -> throw new SAXParseException( "Unknown element: %s".formatted( localName ), m_Locator );
         }
     }   //  startElement()
 }

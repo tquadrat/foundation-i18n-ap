@@ -13,7 +13,7 @@
 <div class="source-container">
 <pre><span class="source-line-no">001</span><span id="line-1">/*</span>
 <span class="source-line-no">002</span><span id="line-2"> * ============================================================================</span>
-<span class="source-line-no">003</span><span id="line-3"> *  Copyright © 2002-2021 by Thomas Thrien.</span>
+<span class="source-line-no">003</span><span id="line-3"> *  Copyright © 2002-2023 by Thomas Thrien.</span>
 <span class="source-line-no">004</span><span id="line-4"> *  All Rights Reserved.</span>
 <span class="source-line-no">005</span><span id="line-5"> * ============================================================================</span>
 <span class="source-line-no">006</span><span id="line-6"> *  Licensed to the public under the agreements of the GNU Lesser General Public</span>
@@ -30,27 +30,27 @@
 <span class="source-line-no">017</span><span id="line-17"></span>
 <span class="source-line-no">018</span><span id="line-18">package org.tquadrat.foundation.i18n.ap;</span>
 <span class="source-line-no">019</span><span id="line-19"></span>
-<span class="source-line-no">020</span><span id="line-20">import static java.lang.String.join;</span>
-<span class="source-line-no">021</span><span id="line-21">import static java.text.Normalizer.Form.NFKC;</span>
-<span class="source-line-no">022</span><span id="line-22">import static java.util.Locale.ENGLISH;</span>
-<span class="source-line-no">023</span><span id="line-23">import static java.util.stream.Collectors.joining;</span>
-<span class="source-line-no">024</span><span id="line-24">import static javax.lang.model.element.ElementKind.METHOD;</span>
-<span class="source-line-no">025</span><span id="line-25">import static javax.tools.Diagnostic.Kind.ERROR;</span>
-<span class="source-line-no">026</span><span id="line-26">import static javax.tools.Diagnostic.Kind.NOTE;</span>
-<span class="source-line-no">027</span><span id="line-27">import static javax.tools.StandardLocation.CLASS_OUTPUT;</span>
-<span class="source-line-no">028</span><span id="line-28">import static javax.tools.StandardLocation.SOURCE_OUTPUT;</span>
-<span class="source-line-no">029</span><span id="line-29">import static javax.tools.StandardLocation.SOURCE_PATH;</span>
-<span class="source-line-no">030</span><span id="line-30">import static org.apiguardian.api.API.Status.STABLE;</span>
-<span class="source-line-no">031</span><span id="line-31">import static org.tquadrat.foundation.i18n.I18nUtil.ADDITIONAL_TEXT_FILE;</span>
-<span class="source-line-no">032</span><span id="line-32">import static org.tquadrat.foundation.i18n.I18nUtil.ADDITIONAL_TEXT_LOCATION;</span>
-<span class="source-line-no">033</span><span id="line-33">import static org.tquadrat.foundation.i18n.I18nUtil.DEFAULT_BASEBUNDLENAME;</span>
-<span class="source-line-no">034</span><span id="line-34">import static org.tquadrat.foundation.i18n.I18nUtil.DEFAULT_MESSAGE_PREFIX;</span>
-<span class="source-line-no">035</span><span id="line-35">import static org.tquadrat.foundation.lang.CommonConstants.EMPTY_STRING;</span>
-<span class="source-line-no">036</span><span id="line-36">import static org.tquadrat.foundation.lang.CommonConstants.ISO8859_1;</span>
-<span class="source-line-no">037</span><span id="line-37">import static org.tquadrat.foundation.lang.Objects.nonNull;</span>
-<span class="source-line-no">038</span><span id="line-38">import static org.tquadrat.foundation.lang.Objects.requireNonNullArgument;</span>
-<span class="source-line-no">039</span><span id="line-39">import static org.tquadrat.foundation.util.CharSetUtils.convertUnicodeToASCII;</span>
-<span class="source-line-no">040</span><span id="line-40">import static org.tquadrat.foundation.util.StringUtils.format;</span>
+<span class="source-line-no">020</span><span id="line-20">import static java.lang.String.format;</span>
+<span class="source-line-no">021</span><span id="line-21">import static java.lang.String.join;</span>
+<span class="source-line-no">022</span><span id="line-22">import static java.text.Normalizer.Form.NFKC;</span>
+<span class="source-line-no">023</span><span id="line-23">import static java.util.Locale.ENGLISH;</span>
+<span class="source-line-no">024</span><span id="line-24">import static java.util.stream.Collectors.joining;</span>
+<span class="source-line-no">025</span><span id="line-25">import static javax.lang.model.element.ElementKind.METHOD;</span>
+<span class="source-line-no">026</span><span id="line-26">import static javax.tools.Diagnostic.Kind.ERROR;</span>
+<span class="source-line-no">027</span><span id="line-27">import static javax.tools.Diagnostic.Kind.NOTE;</span>
+<span class="source-line-no">028</span><span id="line-28">import static javax.tools.StandardLocation.CLASS_OUTPUT;</span>
+<span class="source-line-no">029</span><span id="line-29">import static javax.tools.StandardLocation.SOURCE_OUTPUT;</span>
+<span class="source-line-no">030</span><span id="line-30">import static javax.tools.StandardLocation.SOURCE_PATH;</span>
+<span class="source-line-no">031</span><span id="line-31">import static org.apiguardian.api.API.Status.STABLE;</span>
+<span class="source-line-no">032</span><span id="line-32">import static org.tquadrat.foundation.i18n.I18nUtil.ADDITIONAL_TEXT_FILE;</span>
+<span class="source-line-no">033</span><span id="line-33">import static org.tquadrat.foundation.i18n.I18nUtil.ADDITIONAL_TEXT_LOCATION;</span>
+<span class="source-line-no">034</span><span id="line-34">import static org.tquadrat.foundation.i18n.I18nUtil.DEFAULT_BASEBUNDLENAME;</span>
+<span class="source-line-no">035</span><span id="line-35">import static org.tquadrat.foundation.i18n.I18nUtil.DEFAULT_MESSAGE_PREFIX;</span>
+<span class="source-line-no">036</span><span id="line-36">import static org.tquadrat.foundation.lang.CommonConstants.EMPTY_STRING;</span>
+<span class="source-line-no">037</span><span id="line-37">import static org.tquadrat.foundation.lang.CommonConstants.ISO8859_1;</span>
+<span class="source-line-no">038</span><span id="line-38">import static org.tquadrat.foundation.lang.Objects.nonNull;</span>
+<span class="source-line-no">039</span><span id="line-39">import static org.tquadrat.foundation.lang.Objects.requireNonNullArgument;</span>
+<span class="source-line-no">040</span><span id="line-40">import static org.tquadrat.foundation.util.CharSetUtils.convertUnicodeToASCII;</span>
 <span class="source-line-no">041</span><span id="line-41">import static org.tquadrat.foundation.util.StringUtils.isEmptyOrBlank;</span>
 <span class="source-line-no">042</span><span id="line-42">import static org.tquadrat.foundation.util.StringUtils.isNotEmptyOrBlank;</span>
 <span class="source-line-no">043</span><span id="line-43">import static org.tquadrat.foundation.util.StringUtils.splitString;</span>
@@ -104,12 +104,12 @@
 <span class="source-line-no">091</span><span id="line-91"> *  The annotation processor for the module {@code org.tquadrat.foundation.i18n}.</span>
 <span class="source-line-no">092</span><span id="line-92"> *</span>
 <span class="source-line-no">093</span><span id="line-93"> *  @extauthor Thomas Thrien - thomas.thrien@tquadrat.org</span>
-<span class="source-line-no">094</span><span id="line-94"> *  @version $Id: I18nAnnotationProcessor.java 997 2022-01-26 14:55:05Z tquadrat $</span>
+<span class="source-line-no">094</span><span id="line-94"> *  @version $Id: I18nAnnotationProcessor.java 1062 2023-09-25 23:11:41Z tquadrat $</span>
 <span class="source-line-no">095</span><span id="line-95"> *  @since 0.0.1</span>
 <span class="source-line-no">096</span><span id="line-96"> *</span>
 <span class="source-line-no">097</span><span id="line-97"> *  @UMLGraph.link</span>
 <span class="source-line-no">098</span><span id="line-98"> */</span>
-<span class="source-line-no">099</span><span id="line-99">@ClassVersion( sourceVersion = "$Id: I18nAnnotationProcessor.java 997 2022-01-26 14:55:05Z tquadrat $" )</span>
+<span class="source-line-no">099</span><span id="line-99">@ClassVersion( sourceVersion = "$Id: I18nAnnotationProcessor.java 1062 2023-09-25 23:11:41Z tquadrat $" )</span>
 <span class="source-line-no">100</span><span id="line-100">@API( status = STABLE, since = "0.0.1" )</span>
 <span class="source-line-no">101</span><span id="line-101">@SupportedSourceVersion( SourceVersion.RELEASE_17 )</span>
 <span class="source-line-no">102</span><span id="line-102">@SupportedOptions( { APBase.ADD_DEBUG_OUTPUT, APBase.MAVEN_GOAL, ADDITIONAL_TEXT_LOCATION } )</span>
@@ -153,7 +153,7 @@
 <span class="source-line-no">140</span><span id="line-140">     *  @param  texts    The texts.</span>
 <span class="source-line-no">141</span><span id="line-141">     *  @param  elements    The annotated elements.</span>
 <span class="source-line-no">142</span><span id="line-142">     */</span>
-<span class="source-line-no">143</span><span id="line-143">    @SuppressWarnings( {"NestedTryStatement", "AssignmentToNull", "OptionalUsedAsFieldOrParameterType"} )</span>
+<span class="source-line-no">143</span><span id="line-143">    @SuppressWarnings( {"NestedTryStatement", "OptionalUsedAsFieldOrParameterType", "OverlyComplexMethod"} )</span>
 <span class="source-line-no">144</span><span id="line-144">    private final void generateResourceBundle( final Optional&lt;String&gt; textFileLocation, final Map&lt;Locale,SortedMap&lt;String,TextEntry&gt;&gt; texts, final Element... elements )</span>
 <span class="source-line-no">145</span><span id="line-145">    {</span>
 <span class="source-line-no">146</span><span id="line-146">        final var filer = getFiler();</span>
@@ -176,17 +176,17 @@
 <span class="source-line-no">163</span><span id="line-163">        }</span>
 <span class="source-line-no">164</span><span id="line-164">        catch( final IOException e )</span>
 <span class="source-line-no">165</span><span id="line-165">        {</span>
-<span class="source-line-no">166</span><span id="line-166">            printMessage( ERROR, format( "Unable to read file '%s': %s", ADDITIONAL_TEXT_FILE, e.getMessage() ) );</span>
+<span class="source-line-no">166</span><span id="line-166">            printMessage( ERROR, "Unable to read file '%s': %s".formatted( ADDITIONAL_TEXT_FILE, e.getMessage() ) );</span>
 <span class="source-line-no">167</span><span id="line-167">            throw new AnnotationProcessingError( e );</span>
 <span class="source-line-no">168</span><span id="line-168">        }</span>
 <span class="source-line-no">169</span><span id="line-169">        catch( final SAXException e )</span>
 <span class="source-line-no">170</span><span id="line-170">        {</span>
-<span class="source-line-no">171</span><span id="line-171">            printMessage( ERROR, format( "Unable to parse file '%s': %s", ADDITIONAL_TEXT_FILE, e.getMessage() ) );</span>
+<span class="source-line-no">171</span><span id="line-171">            printMessage( ERROR, "Unable to parse file '%s': %s".formatted( ADDITIONAL_TEXT_FILE, e.getMessage() ) );</span>
 <span class="source-line-no">172</span><span id="line-172">            throw new AnnotationProcessingError( e );</span>
 <span class="source-line-no">173</span><span id="line-173">        }</span>
 <span class="source-line-no">174</span><span id="line-174">        catch( final ParserConfigurationException e )</span>
 <span class="source-line-no">175</span><span id="line-175">        {</span>
-<span class="source-line-no">176</span><span id="line-176">            printMessage( ERROR, format( "Unable to create SAXParser: %s", e.getMessage() ) );</span>
+<span class="source-line-no">176</span><span id="line-176">            printMessage( ERROR, "Unable to create SAXParser: %s".formatted( e.getMessage() ) );</span>
 <span class="source-line-no">177</span><span id="line-177">            throw new AnnotationProcessingError( e );</span>
 <span class="source-line-no">178</span><span id="line-178">        }</span>
 <span class="source-line-no">179</span><span id="line-179"></span>
@@ -220,7 +220,7 @@
 <span class="source-line-no">207</span><span id="line-207">            {</span>
 <span class="source-line-no">208</span><span id="line-208">                final var bundleFile = filer.createResource( SOURCE_OUTPUT, EMPTY_STRING, pathName, elements );</span>
 <span class="source-line-no">209</span><span id="line-209">                pathName = bundleFile.toUri().toString();</span>
-<span class="source-line-no">210</span><span id="line-210">                printMessage( NOTE, format( "Creating Resource File: %s", pathName ) );</span>
+<span class="source-line-no">210</span><span id="line-210">                printMessage( NOTE, "Creating Resource File: %s".formatted( pathName ) );</span>
 <span class="source-line-no">211</span><span id="line-211">                try( final var writer = new OutputStreamWriter( bundleFile.openOutputStream(), ISO8859_1 ) )</span>
 <span class="source-line-no">212</span><span id="line-212">                {</span>
 <span class="source-line-no">213</span><span id="line-213">                    writeResourceBundleFile( localeEntries.getValue().values(), writer );</span>
@@ -228,7 +228,7 @@
 <span class="source-line-no">215</span><span id="line-215">            }</span>
 <span class="source-line-no">216</span><span id="line-216">            catch( final IOException e )</span>
 <span class="source-line-no">217</span><span id="line-217">            {</span>
-<span class="source-line-no">218</span><span id="line-218">                printMessage( ERROR, format( "Unable to write resource bundle file '%s': %s", pathName, e.getMessage() ) );</span>
+<span class="source-line-no">218</span><span id="line-218">                printMessage( ERROR, "Unable to write resource bundle file '%s': %s".formatted( pathName, e.getMessage() ) );</span>
 <span class="source-line-no">219</span><span id="line-219">                throw new AnnotationProcessingError( e );</span>
 <span class="source-line-no">220</span><span id="line-220">            }</span>
 <span class="source-line-no">221</span><span id="line-221"></span>
@@ -242,7 +242,7 @@
 <span class="source-line-no">229</span><span id="line-229">            {</span>
 <span class="source-line-no">230</span><span id="line-230">                final var bundleFile = filer.createResource( CLASS_OUTPUT, EMPTY_STRING, pathName, elements );</span>
 <span class="source-line-no">231</span><span id="line-231">                pathName = bundleFile.toUri().toString();</span>
-<span class="source-line-no">232</span><span id="line-232">                printMessage( NOTE, format( "Creating Resource File: %s", pathName ) );</span>
+<span class="source-line-no">232</span><span id="line-232">                printMessage( NOTE, "Creating Resource File: %s".formatted( pathName ) );</span>
 <span class="source-line-no">233</span><span id="line-233">                try( final var writer = new OutputStreamWriter( bundleFile.openOutputStream(), ISO8859_1 ) )</span>
 <span class="source-line-no">234</span><span id="line-234">                {</span>
 <span class="source-line-no">235</span><span id="line-235">                    writeResourceBundleFile( localeEntries.getValue().values(), writer );</span>
@@ -250,7 +250,7 @@
 <span class="source-line-no">237</span><span id="line-237">            }</span>
 <span class="source-line-no">238</span><span id="line-238">            catch( final IOException e )</span>
 <span class="source-line-no">239</span><span id="line-239">            {</span>
-<span class="source-line-no">240</span><span id="line-240">                printMessage( ERROR, format( "Unable to write resource bundle file '%s': %s", pathName, e.getMessage() ) );</span>
+<span class="source-line-no">240</span><span id="line-240">                printMessage( ERROR, "Unable to write resource bundle file '%s': %s".formatted( pathName, e.getMessage() ) );</span>
 <span class="source-line-no">241</span><span id="line-241">                throw new AnnotationProcessingError( e );</span>
 <span class="source-line-no">242</span><span id="line-242">            }</span>
 <span class="source-line-no">243</span><span id="line-243">        }   //  LocaleLoop:</span>
@@ -303,275 +303,275 @@
 <span class="source-line-no">290</span><span id="line-290">    /**</span>
 <span class="source-line-no">291</span><span id="line-291">     *  {@inheritDoc}</span>
 <span class="source-line-no">292</span><span id="line-292">     */</span>
-<span class="source-line-no">293</span><span id="line-293">    @Override</span>
-<span class="source-line-no">294</span><span id="line-294">    public final boolean process( final Set&lt;? extends TypeElement&gt; annotations, final RoundEnvironment roundEnvironment )</span>
-<span class="source-line-no">295</span><span id="line-295">    {</span>
-<span class="source-line-no">296</span><span id="line-296">        //---* Tell them who we are *------------------------------------------</span>
-<span class="source-line-no">297</span><span id="line-297">        final var message = annotations.isEmpty() ? "No annotations to process" : annotations.stream()</span>
-<span class="source-line-no">298</span><span id="line-298">            .map( TypeElement::getQualifiedName )</span>
-<span class="source-line-no">299</span><span id="line-299">            .collect( joining( "', '", "Processing the annotation" + (annotations.size() &gt; 1 ? "s '" : " '"), "'" ) );</span>
-<span class="source-line-no">300</span><span id="line-300">        printMessage( NOTE, message );</span>
-<span class="source-line-no">301</span><span id="line-301"></span>
-<span class="source-line-no">302</span><span id="line-302">        final var retValue = !roundEnvironment.errorRaised() &amp;&amp; !annotations.isEmpty();</span>
-<span class="source-line-no">303</span><span id="line-303">        if( retValue )</span>
-<span class="source-line-no">304</span><span id="line-304">        {</span>
-<span class="source-line-no">305</span><span id="line-305">            final Map&lt;Locale,SortedMap&lt;String,TextEntry&gt;&gt; texts = new HashMap&lt;&gt;();</span>
-<span class="source-line-no">306</span><span id="line-306">            final Collection&lt;Element&gt; processedElements = new HashSet&lt;&gt;();</span>
-<span class="source-line-no">307</span><span id="line-307"></span>
-<span class="source-line-no">308</span><span id="line-308">            if( !annotations.isEmpty() )</span>
-<span class="source-line-no">309</span><span id="line-309">            {</span>
-<span class="source-line-no">310</span><span id="line-310">                //---* Get the message prefix *--------------------------------</span>
-<span class="source-line-no">311</span><span id="line-311">                retrieveAnnotatedField( roundEnvironment, MessagePrefix.class )</span>
-<span class="source-line-no">312</span><span id="line-312">                    .ifPresent( variableElement -&gt; m_MessagePrefix = variableElement.getConstantValue().toString() );</span>
-<span class="source-line-no">313</span><span id="line-313"></span>
-<span class="source-line-no">314</span><span id="line-314">                //---* Get the base bundle name *------------------------------</span>
-<span class="source-line-no">315</span><span id="line-315">                retrieveAnnotatedField( roundEnvironment, BaseBundleName.class )</span>
-<span class="source-line-no">316</span><span id="line-316">                    .ifPresent( variableElement -&gt;</span>
-<span class="source-line-no">317</span><span id="line-317">                    {</span>
-<span class="source-line-no">318</span><span id="line-318">                        m_BaseBundleName = variableElement.getConstantValue().toString();</span>
-<span class="source-line-no">319</span><span id="line-319">                        final var annotation = variableElement.getAnnotation( BaseBundleName.class );</span>
-<span class="source-line-no">320</span><span id="line-320">                        final var defaultLanguageCode = annotation.defaultLanguage();</span>
-<span class="source-line-no">321</span><span id="line-321">                        m_DefaultLanguage = retrieveLocale( defaultLanguageCode ).orElseThrow( () -&gt; new IllegalArgumentException( format( MSG_InvalidLocaleFormat, defaultLanguageCode ) ) );</span>
-<span class="source-line-no">322</span><span id="line-322">                    } );</span>
-<span class="source-line-no">323</span><span id="line-323"></span>
-<span class="source-line-no">324</span><span id="line-324">                /*</span>
-<span class="source-line-no">325</span><span id="line-325">                 *  Collect the elements that are annotated with @Text or</span>
-<span class="source-line-no">326</span><span id="line-326">                 *  @Message.</span>
-<span class="source-line-no">327</span><span id="line-327">                 */</span>
-<span class="source-line-no">328</span><span id="line-328">                if( annotations.stream()</span>
-<span class="source-line-no">329</span><span id="line-329">                    .map( TypeElement::getQualifiedName )</span>
-<span class="source-line-no">330</span><span id="line-330">                    .map( Object::toString )</span>
-<span class="source-line-no">331</span><span id="line-331">                    .anyMatch( n -&gt; n.equals( Texts.class.getName() ) || n.equals( Text.class.getName() ) || n.equals( Message.class.getName() ) ) )</span>
-<span class="source-line-no">332</span><span id="line-332">                {</span>
-<span class="source-line-no">333</span><span id="line-333">                    final var textCollector = new TextCollector( this, nonNull( m_MessagePrefix ) ? m_MessagePrefix : DEFAULT_MESSAGE_PREFIX );</span>
-<span class="source-line-no">334</span><span id="line-334">                    for( final var element : roundEnvironment.getElementsAnnotatedWith( Message.class ) )</span>
-<span class="source-line-no">335</span><span id="line-335">                    {</span>
-<span class="source-line-no">336</span><span id="line-336">                        if( element instanceof VariableElement )</span>
-<span class="source-line-no">337</span><span id="line-337">                        {</span>
-<span class="source-line-no">338</span><span id="line-338">                            element.accept( textCollector, texts );</span>
-<span class="source-line-no">339</span><span id="line-339">                            processedElements.add( element );</span>
-<span class="source-line-no">340</span><span id="line-340">                        }</span>
-<span class="source-line-no">341</span><span id="line-341">                        else</span>
-<span class="source-line-no">342</span><span id="line-342">                        {</span>
-<span class="source-line-no">343</span><span id="line-343">                            printMessage( ERROR, format( MSG_IllegalAnnotationUse, element.getSimpleName().toString(), BaseBundleName.class.getSimpleName() ), element );</span>
-<span class="source-line-no">344</span><span id="line-344">                            throw new IllegalAnnotationError( BaseBundleName.class );</span>
-<span class="source-line-no">345</span><span id="line-345">                        }</span>
-<span class="source-line-no">346</span><span id="line-346">                    }</span>
-<span class="source-line-no">347</span><span id="line-347"></span>
-<span class="source-line-no">348</span><span id="line-348">                    final Collection&lt;Element&gt; textAnnotatedElements = new HashSet&lt;&gt;( roundEnvironment.getElementsAnnotatedWith( Text.class ) );</span>
-<span class="source-line-no">349</span><span id="line-349">                    textAnnotatedElements.addAll( roundEnvironment.getElementsAnnotatedWith( Texts.class ) );</span>
-<span class="source-line-no">350</span><span id="line-350">                    for( final var element : textAnnotatedElements )</span>
-<span class="source-line-no">351</span><span id="line-351">                    {</span>
-<span class="source-line-no">352</span><span id="line-352">                        if( (element instanceof VariableElement) || (element.getKind() == METHOD) )</span>
-<span class="source-line-no">353</span><span id="line-353">                        {</span>
-<span class="source-line-no">354</span><span id="line-354">                            element.accept( textCollector, texts );</span>
-<span class="source-line-no">355</span><span id="line-355">                            processedElements.add( element );</span>
-<span class="source-line-no">356</span><span id="line-356">                        }</span>
-<span class="source-line-no">357</span><span id="line-357">                        else</span>
-<span class="source-line-no">358</span><span id="line-358">                        {</span>
-<span class="source-line-no">359</span><span id="line-359">                            printMessage( ERROR, format( MSG_IllegalAnnotationUse, element.getSimpleName().toString(), BaseBundleName.class.getSimpleName() ), element );</span>
-<span class="source-line-no">360</span><span id="line-360">                            throw new IllegalAnnotationError( Text.class );</span>
-<span class="source-line-no">361</span><span id="line-361">                        }</span>
-<span class="source-line-no">362</span><span id="line-362">                    }</span>
-<span class="source-line-no">363</span><span id="line-363">                }</span>
-<span class="source-line-no">364</span><span id="line-364">            }</span>
-<span class="source-line-no">365</span><span id="line-365"></span>
-<span class="source-line-no">366</span><span id="line-366">            /*</span>
-<span class="source-line-no">367</span><span id="line-367">             * Even when no text or message annotation was found, there could</span>
-<span class="source-line-no">368</span><span id="line-368">             * be still some additional texts.</span>
-<span class="source-line-no">369</span><span id="line-369">             */</span>
-<span class="source-line-no">370</span><span id="line-370">            final List&lt;Element&gt; useAdditionalTextsAnnotatedElements = new ArrayList&lt;&gt;( roundEnvironment.getElementsAnnotatedWith( UseAdditionalTexts.class ) );</span>
-<span class="source-line-no">371</span><span id="line-371">            final Optional&lt;String&gt; textFileLocation = switch( useAdditionalTextsAnnotatedElements.size() )</span>
-<span class="source-line-no">372</span><span id="line-372">            {</span>
-<span class="source-line-no">373</span><span id="line-373">                case 0 -&gt; Optional.empty();</span>
-<span class="source-line-no">374</span><span id="line-374">                case 1 -&gt;</span>
-<span class="source-line-no">375</span><span id="line-375">                    {</span>
-<span class="source-line-no">376</span><span id="line-376">                        final var annotation = useAdditionalTextsAnnotatedElements.get( 0 ).getAnnotation( UseAdditionalTexts.class );</span>
-<span class="source-line-no">377</span><span id="line-377">                        final var location = annotation.location();</span>
-<span class="source-line-no">378</span><span id="line-378">                        yield isEmptyOrBlank( location ) ? Optional.empty() : Optional.of( location );</span>
-<span class="source-line-no">379</span><span id="line-379">                    }</span>
-<span class="source-line-no">380</span><span id="line-380">                default -&gt;</span>
-<span class="source-line-no">381</span><span id="line-381">                {</span>
-<span class="source-line-no">382</span><span id="line-382">                    final var msg = format( MSG_MultipleElements, UseAdditionalTexts.class.getSimpleName() );</span>
-<span class="source-line-no">383</span><span id="line-383">                    printMessage( ERROR, msg );</span>
-<span class="source-line-no">384</span><span id="line-384">                    throw new IllegalAnnotationError( msg, UseAdditionalTexts.class );</span>
-<span class="source-line-no">385</span><span id="line-385">                }</span>
-<span class="source-line-no">386</span><span id="line-386">            };</span>
-<span class="source-line-no">387</span><span id="line-387"></span>
-<span class="source-line-no">388</span><span id="line-388">            printMessage( NOTE, "Generate ResourceBundles" );</span>
-<span class="source-line-no">389</span><span id="line-389">            generateResourceBundle( textFileLocation, texts, processedElements.toArray( Element []::new ) );</span>
-<span class="source-line-no">390</span><span id="line-390">        }</span>
-<span class="source-line-no">391</span><span id="line-391"></span>
-<span class="source-line-no">392</span><span id="line-392">        //---* Done *----------------------------------------------------------</span>
-<span class="source-line-no">393</span><span id="line-393">        return retValue;</span>
-<span class="source-line-no">394</span><span id="line-394">    }   //  process()</span>
-<span class="source-line-no">395</span><span id="line-395"></span>
-<span class="source-line-no">396</span><span id="line-396">    /**</span>
-<span class="source-line-no">397</span><span id="line-397">     *  Searches the file with the additional texts</span>
-<span class="source-line-no">398</span><span id="line-398">     *  ({@value org.tquadrat.foundation.i18n.I18nUtil#ADDITIONAL_TEXT_FILE})</span>
-<span class="source-line-no">399</span><span id="line-399">     *  on the location configured with the annotation processor option</span>
-<span class="source-line-no">400</span><span id="line-400">     *  {@value org.tquadrat.foundation.i18n.I18nUtil#ADDITIONAL_TEXT_LOCATION}.</span>
-<span class="source-line-no">401</span><span id="line-401">     *</span>
-<span class="source-line-no">402</span><span id="line-402">     *  @return An instance of</span>
-<span class="source-line-no">403</span><span id="line-403">     *      {@link Optional}</span>
-<span class="source-line-no">404</span><span id="line-404">     *      that holds the</span>
-<span class="source-line-no">405</span><span id="line-405">     *      {@link InputSource}</span>
-<span class="source-line-no">406</span><span id="line-406">     *      for the file.</span>
-<span class="source-line-no">407</span><span id="line-407">     */</span>
-<span class="source-line-no">408</span><span id="line-408">    private final Optional&lt;InputSource&gt; searchAdditionalTextsOnConfiguredLocation()</span>
-<span class="source-line-no">409</span><span id="line-409">    {</span>
-<span class="source-line-no">410</span><span id="line-410">        Optional&lt;InputSource&gt; retValue = Optional.empty();</span>
-<span class="source-line-no">411</span><span id="line-411"></span>
-<span class="source-line-no">412</span><span id="line-412">        final var option = getOption( ADDITIONAL_TEXT_LOCATION );</span>
-<span class="source-line-no">413</span><span id="line-413">        if( option.isPresent() )</span>
-<span class="source-line-no">414</span><span id="line-414">        {</span>
-<span class="source-line-no">415</span><span id="line-415">            final var folder = new File( option.get() );</span>
-<span class="source-line-no">416</span><span id="line-416">            if( folder.exists() &amp;&amp; folder.isDirectory() )</span>
-<span class="source-line-no">417</span><span id="line-417">            {</span>
-<span class="source-line-no">418</span><span id="line-418">                var textFile = new File( folder, ADDITIONAL_TEXT_FILE );</span>
-<span class="source-line-no">419</span><span id="line-419">                var textFileName = textFile.getAbsolutePath();</span>
-<span class="source-line-no">420</span><span id="line-420">                try</span>
-<span class="source-line-no">421</span><span id="line-421">                {</span>
-<span class="source-line-no">422</span><span id="line-422">                    textFile = textFile.getCanonicalFile().getAbsoluteFile();</span>
-<span class="source-line-no">423</span><span id="line-423">                    textFileName = textFile.getAbsolutePath();</span>
-<span class="source-line-no">424</span><span id="line-424">                    if( textFile.exists() &amp;&amp; textFile.isFile() )</span>
-<span class="source-line-no">425</span><span id="line-425">                    {</span>
-<span class="source-line-no">426</span><span id="line-426">                        final var inputStream = new FileInputStream( textFile );</span>
-<span class="source-line-no">427</span><span id="line-427"></span>
-<span class="source-line-no">428</span><span id="line-428">                        //---* Create the return value *-----------------------</span>
-<span class="source-line-no">429</span><span id="line-429">                        retValue = Optional.of( new InputSource( inputStream ) );</span>
-<span class="source-line-no">430</span><span id="line-430"></span>
-<span class="source-line-no">431</span><span id="line-431">                        textFileName = textFile.toURI().toURL().toExternalForm();</span>
-<span class="source-line-no">432</span><span id="line-432">                        printMessage( NOTE, format( "Reading additional texts from '%s' (configured location)", textFileName ) );</span>
-<span class="source-line-no">433</span><span id="line-433">                    }</span>
-<span class="source-line-no">434</span><span id="line-434">                }</span>
-<span class="source-line-no">435</span><span id="line-435">                catch( @SuppressWarnings( "OverlyBroadCatchBlock" ) final IOException e )</span>
-<span class="source-line-no">436</span><span id="line-436">                {</span>
-<span class="source-line-no">437</span><span id="line-437">                    printMessage( NOTE, format( "Cannot open file '%s' with additional texts", textFileName ) );</span>
-<span class="source-line-no">438</span><span id="line-438">                }</span>
-<span class="source-line-no">439</span><span id="line-439">            }</span>
-<span class="source-line-no">440</span><span id="line-440">        }</span>
-<span class="source-line-no">441</span><span id="line-441"></span>
-<span class="source-line-no">442</span><span id="line-442">        //---* Done *----------------------------------------------------------</span>
-<span class="source-line-no">443</span><span id="line-443">        return retValue;</span>
-<span class="source-line-no">444</span><span id="line-444">    }   //  searchAdditionalTextsOnConfiguredLocation</span>
-<span class="source-line-no">445</span><span id="line-445"></span>
-<span class="source-line-no">446</span><span id="line-446">    /**</span>
-<span class="source-line-no">447</span><span id="line-447">     *  Searches the file with the additional texts</span>
-<span class="source-line-no">448</span><span id="line-448">     *  ({@value org.tquadrat.foundation.i18n.I18nUtil#ADDITIONAL_TEXT_FILE})</span>
-<span class="source-line-no">449</span><span id="line-449">     *  on the location provided by the annotation</span>
-<span class="source-line-no">450</span><span id="line-450">     *  {@link UseAdditionalTexts &amp;#64;UseAdditionalTexts}.</span>
-<span class="source-line-no">451</span><span id="line-451">     *</span>
-<span class="source-line-no">452</span><span id="line-452">     *  @param  location    The location for the file with the additional</span>
-<span class="source-line-no">453</span><span id="line-453">     *      texts.</span>
-<span class="source-line-no">454</span><span id="line-454">     *  @return An instance of</span>
-<span class="source-line-no">455</span><span id="line-455">     *      {@link Optional}</span>
-<span class="source-line-no">456</span><span id="line-456">     *      that holds the</span>
-<span class="source-line-no">457</span><span id="line-457">     *      {@link InputSource}</span>
-<span class="source-line-no">458</span><span id="line-458">     *      for the file.</span>
-<span class="source-line-no">459</span><span id="line-459">     */</span>
-<span class="source-line-no">460</span><span id="line-460">    private final Optional&lt;InputSource&gt; searchAdditionalTextsOnProvidedLocation( final String location )</span>
-<span class="source-line-no">461</span><span id="line-461">    {</span>
-<span class="source-line-no">462</span><span id="line-462">        Optional&lt;InputSource&gt; retValue = Optional.empty();</span>
-<span class="source-line-no">463</span><span id="line-463"></span>
-<span class="source-line-no">464</span><span id="line-464">        final var folder = new File( location );</span>
-<span class="source-line-no">465</span><span id="line-465">        if( folder.exists() &amp;&amp; folder.isDirectory() )</span>
-<span class="source-line-no">466</span><span id="line-466">        {</span>
-<span class="source-line-no">467</span><span id="line-467">            var textFile = new File( folder, ADDITIONAL_TEXT_FILE );</span>
-<span class="source-line-no">468</span><span id="line-468">            var textFileName = textFile.getAbsolutePath();</span>
-<span class="source-line-no">469</span><span id="line-469">            try</span>
-<span class="source-line-no">470</span><span id="line-470">            {</span>
-<span class="source-line-no">471</span><span id="line-471">                textFile = textFile.getCanonicalFile().getAbsoluteFile();</span>
-<span class="source-line-no">472</span><span id="line-472">                textFileName = textFile.getAbsolutePath();</span>
-<span class="source-line-no">473</span><span id="line-473">                if( textFile.exists() &amp;&amp; textFile.isFile() )</span>
-<span class="source-line-no">474</span><span id="line-474">                {</span>
-<span class="source-line-no">475</span><span id="line-475">                    final var inputStream = new FileInputStream( textFile );</span>
-<span class="source-line-no">476</span><span id="line-476"></span>
-<span class="source-line-no">477</span><span id="line-477">                    //---* Create the return value *---------------------------</span>
-<span class="source-line-no">478</span><span id="line-478">                    retValue = Optional.of( new InputSource( inputStream ) );</span>
-<span class="source-line-no">479</span><span id="line-479"></span>
-<span class="source-line-no">480</span><span id="line-480">                    textFileName = textFile.toURI().toURL().toExternalForm();</span>
-<span class="source-line-no">481</span><span id="line-481">                    printMessage( NOTE, format( "Reading additional texts from '%s' (provided location)", textFileName ) );</span>
-<span class="source-line-no">482</span><span id="line-482">                }</span>
-<span class="source-line-no">483</span><span id="line-483">            }</span>
-<span class="source-line-no">484</span><span id="line-484">            catch( @SuppressWarnings( "OverlyBroadCatchBlock" ) final IOException e )</span>
-<span class="source-line-no">485</span><span id="line-485">            {</span>
-<span class="source-line-no">486</span><span id="line-486">                printMessage( NOTE, format( "Cannot open file '%s' with additional texts", textFileName ) );</span>
-<span class="source-line-no">487</span><span id="line-487">            }</span>
-<span class="source-line-no">488</span><span id="line-488">        }</span>
-<span class="source-line-no">489</span><span id="line-489"></span>
-<span class="source-line-no">490</span><span id="line-490">        //---* Done *----------------------------------------------------------</span>
-<span class="source-line-no">491</span><span id="line-491">        return retValue;</span>
-<span class="source-line-no">492</span><span id="line-492">    }   //  searchAdditionalTextsOnProvidedLocation</span>
-<span class="source-line-no">493</span><span id="line-493"></span>
-<span class="source-line-no">494</span><span id="line-494">    /**</span>
-<span class="source-line-no">495</span><span id="line-495">     *  Searches the file with the additional texts</span>
-<span class="source-line-no">496</span><span id="line-496">     *  ({@value org.tquadrat.foundation.i18n.I18nUtil#ADDITIONAL_TEXT_FILE})</span>
-<span class="source-line-no">497</span><span id="line-497">     *  on the location determined by</span>
-<span class="source-line-no">498</span><span id="line-498">     *  {@link javax.tools.StandardLocation#SOURCE_PATH}.</span>
-<span class="source-line-no">499</span><span id="line-499">     *</span>
-<span class="source-line-no">500</span><span id="line-500">     *  @param filer    The</span>
-<span class="source-line-no">501</span><span id="line-501">     *      {@link Filer}</span>
-<span class="source-line-no">502</span><span id="line-502">     *      instance that provides the {@code SOURCE_PATH} location.</span>
-<span class="source-line-no">503</span><span id="line-503">     *  @return An instance of</span>
-<span class="source-line-no">504</span><span id="line-504">     *      {@link Optional}</span>
-<span class="source-line-no">505</span><span id="line-505">     *      that holds the</span>
-<span class="source-line-no">506</span><span id="line-506">     *      {@link InputSource}</span>
-<span class="source-line-no">507</span><span id="line-507">     *      for the file.</span>
-<span class="source-line-no">508</span><span id="line-508">     */</span>
-<span class="source-line-no">509</span><span id="line-509">    @SuppressWarnings( "AssignmentToNull" )</span>
-<span class="source-line-no">510</span><span id="line-510">    private final Optional&lt;InputSource&gt; searchAdditionalTextsOnSourceTree( final Filer filer )</span>
-<span class="source-line-no">511</span><span id="line-511">    {</span>
-<span class="source-line-no">512</span><span id="line-512">        Optional&lt;InputSource&gt; retValue = Optional.empty();</span>
-<span class="source-line-no">513</span><span id="line-513"></span>
-<span class="source-line-no">514</span><span id="line-514">        FileObject textFile;</span>
-<span class="source-line-no">515</span><span id="line-515">        try</span>
-<span class="source-line-no">516</span><span id="line-516">        {</span>
-<span class="source-line-no">517</span><span id="line-517">            textFile = filer.getResource( SOURCE_PATH, EMPTY_STRING, ADDITIONAL_TEXT_FILE );</span>
-<span class="source-line-no">518</span><span id="line-518">        }</span>
-<span class="source-line-no">519</span><span id="line-519">        catch( @SuppressWarnings( "unused" ) final IOException e )</span>
-<span class="source-line-no">520</span><span id="line-520">        {</span>
-<span class="source-line-no">521</span><span id="line-521">            printMessage( NOTE, format( "Cannot open file '%s' with additional texts", ADDITIONAL_TEXT_FILE ) );</span>
-<span class="source-line-no">522</span><span id="line-522">            textFile = null;</span>
-<span class="source-line-no">523</span><span id="line-523">        }</span>
-<span class="source-line-no">524</span><span id="line-524">        if( nonNull( textFile ) )</span>
-<span class="source-line-no">525</span><span id="line-525">        {</span>
-<span class="source-line-no">526</span><span id="line-526">            var textFileName = ADDITIONAL_TEXT_FILE;</span>
-<span class="source-line-no">527</span><span id="line-527">            try</span>
-<span class="source-line-no">528</span><span id="line-528">            {</span>
-<span class="source-line-no">529</span><span id="line-529">                textFileName = textFile.toUri().toURL().toExternalForm();</span>
-<span class="source-line-no">530</span><span id="line-530"></span>
-<span class="source-line-no">531</span><span id="line-531">                //---* Create the input stream *-------------------------------</span>
-<span class="source-line-no">532</span><span id="line-532">                final var inputStream = textFile.openInputStream();</span>
-<span class="source-line-no">533</span><span id="line-533"></span>
-<span class="source-line-no">534</span><span id="line-534">                //---* Create the input source *-------------------------------</span>
-<span class="source-line-no">535</span><span id="line-535">                final var inputSource = new InputSource( inputStream );</span>
-<span class="source-line-no">536</span><span id="line-536"></span>
-<span class="source-line-no">537</span><span id="line-537">                //---* Create the return value *-------------------------------</span>
-<span class="source-line-no">538</span><span id="line-538">                retValue = Optional.of( inputSource );</span>
-<span class="source-line-no">539</span><span id="line-539"></span>
-<span class="source-line-no">540</span><span id="line-540">                printMessage( NOTE, format( "Reading additional texts from '%s' (source tree)", textFileName ) );</span>
-<span class="source-line-no">541</span><span id="line-541">            }</span>
-<span class="source-line-no">542</span><span id="line-542">            catch( @SuppressWarnings( "OverlyBroadCatchBlock" ) final IllegalArgumentException | IOException e )</span>
-<span class="source-line-no">543</span><span id="line-543">            {</span>
-<span class="source-line-no">544</span><span id="line-544">                printMessage( ERROR, format( "Unable to read file '%s' with additional texts: %s", textFileName, e.toString() ) );</span>
-<span class="source-line-no">545</span><span id="line-545">                throw new AnnotationProcessingError( e );</span>
-<span class="source-line-no">546</span><span id="line-546">            }</span>
-<span class="source-line-no">547</span><span id="line-547">        }</span>
-<span class="source-line-no">548</span><span id="line-548"></span>
-<span class="source-line-no">549</span><span id="line-549">        //---* Done *----------------------------------------------------------</span>
-<span class="source-line-no">550</span><span id="line-550">        return retValue;</span>
-<span class="source-line-no">551</span><span id="line-551">    }   //  searchAdditionalTextsOnSourceTree()</span>
-<span class="source-line-no">552</span><span id="line-552"></span>
-<span class="source-line-no">553</span><span id="line-553">    /**</span>
-<span class="source-line-no">554</span><span id="line-554">     *  Write the resource bundle properties to the given</span>
-<span class="source-line-no">555</span><span id="line-555">     *  {@link Writer}.</span>
-<span class="source-line-no">556</span><span id="line-556">     *</span>
-<span class="source-line-no">557</span><span id="line-557">     *  @param  data    The properties.</span>
-<span class="source-line-no">558</span><span id="line-558">     *  @param  writer  The target {@code Writer} instance.</span>
-<span class="source-line-no">559</span><span id="line-559">     *  @throws IOException Writing the resource bundle file failed.</span>
-<span class="source-line-no">560</span><span id="line-560">     */</span>
-<span class="source-line-no">561</span><span id="line-561">    @SuppressWarnings( "resource" )</span>
+<span class="source-line-no">293</span><span id="line-293">    @SuppressWarnings( "OverlyComplexMethod" )</span>
+<span class="source-line-no">294</span><span id="line-294">    @Override</span>
+<span class="source-line-no">295</span><span id="line-295">    public final boolean process( final Set&lt;? extends TypeElement&gt; annotations, final RoundEnvironment roundEnvironment )</span>
+<span class="source-line-no">296</span><span id="line-296">    {</span>
+<span class="source-line-no">297</span><span id="line-297">        //---* Tell them who we are *------------------------------------------</span>
+<span class="source-line-no">298</span><span id="line-298">        final var message = annotations.isEmpty() ? "No annotations to process" : annotations.stream()</span>
+<span class="source-line-no">299</span><span id="line-299">            .map( TypeElement::getQualifiedName )</span>
+<span class="source-line-no">300</span><span id="line-300">            .collect( joining( "', '", "Processing the annotation" + (annotations.size() &gt; 1 ? "s '" : " '"), "'" ) );</span>
+<span class="source-line-no">301</span><span id="line-301">        printMessage( NOTE, message );</span>
+<span class="source-line-no">302</span><span id="line-302"></span>
+<span class="source-line-no">303</span><span id="line-303">        final var retValue = !roundEnvironment.errorRaised() &amp;&amp; !annotations.isEmpty();</span>
+<span class="source-line-no">304</span><span id="line-304">        if( retValue )</span>
+<span class="source-line-no">305</span><span id="line-305">        {</span>
+<span class="source-line-no">306</span><span id="line-306">            final Map&lt;Locale,SortedMap&lt;String,TextEntry&gt;&gt; texts = new HashMap&lt;&gt;();</span>
+<span class="source-line-no">307</span><span id="line-307">            final Collection&lt;Element&gt; processedElements = new HashSet&lt;&gt;();</span>
+<span class="source-line-no">308</span><span id="line-308"></span>
+<span class="source-line-no">309</span><span id="line-309">            if( !annotations.isEmpty() )</span>
+<span class="source-line-no">310</span><span id="line-310">            {</span>
+<span class="source-line-no">311</span><span id="line-311">                //---* Get the message prefix *--------------------------------</span>
+<span class="source-line-no">312</span><span id="line-312">                retrieveAnnotatedField( roundEnvironment, MessagePrefix.class )</span>
+<span class="source-line-no">313</span><span id="line-313">                    .ifPresent( variableElement -&gt; m_MessagePrefix = variableElement.getConstantValue().toString() );</span>
+<span class="source-line-no">314</span><span id="line-314"></span>
+<span class="source-line-no">315</span><span id="line-315">                //---* Get the base bundle name *------------------------------</span>
+<span class="source-line-no">316</span><span id="line-316">                retrieveAnnotatedField( roundEnvironment, BaseBundleName.class )</span>
+<span class="source-line-no">317</span><span id="line-317">                    .ifPresent( variableElement -&gt;</span>
+<span class="source-line-no">318</span><span id="line-318">                    {</span>
+<span class="source-line-no">319</span><span id="line-319">                        m_BaseBundleName = variableElement.getConstantValue().toString();</span>
+<span class="source-line-no">320</span><span id="line-320">                        final var annotation = variableElement.getAnnotation( BaseBundleName.class );</span>
+<span class="source-line-no">321</span><span id="line-321">                        final var defaultLanguageCode = annotation.defaultLanguage();</span>
+<span class="source-line-no">322</span><span id="line-322">                        m_DefaultLanguage = retrieveLocale( defaultLanguageCode ).orElseThrow( () -&gt; new IllegalArgumentException( format( MSG_InvalidLocaleFormat, defaultLanguageCode ) ) );</span>
+<span class="source-line-no">323</span><span id="line-323">                    } );</span>
+<span class="source-line-no">324</span><span id="line-324"></span>
+<span class="source-line-no">325</span><span id="line-325">                /*</span>
+<span class="source-line-no">326</span><span id="line-326">                 *  Collect the elements that are annotated with @Text or</span>
+<span class="source-line-no">327</span><span id="line-327">                 *  @Message.</span>
+<span class="source-line-no">328</span><span id="line-328">                 */</span>
+<span class="source-line-no">329</span><span id="line-329">                if( annotations.stream()</span>
+<span class="source-line-no">330</span><span id="line-330">                    .map( TypeElement::getQualifiedName )</span>
+<span class="source-line-no">331</span><span id="line-331">                    .map( Object::toString )</span>
+<span class="source-line-no">332</span><span id="line-332">                    .anyMatch( name -&gt; name.equals( Texts.class.getName() ) || name.equals( Text.class.getName() ) || name.equals( Message.class.getName() ) ) )</span>
+<span class="source-line-no">333</span><span id="line-333">                {</span>
+<span class="source-line-no">334</span><span id="line-334">                    final var textCollector = new TextCollector( this, nonNull( m_MessagePrefix ) ? m_MessagePrefix : DEFAULT_MESSAGE_PREFIX );</span>
+<span class="source-line-no">335</span><span id="line-335">                    for( final var element : roundEnvironment.getElementsAnnotatedWith( Message.class ) )</span>
+<span class="source-line-no">336</span><span id="line-336">                    {</span>
+<span class="source-line-no">337</span><span id="line-337">                        if( element instanceof VariableElement )</span>
+<span class="source-line-no">338</span><span id="line-338">                        {</span>
+<span class="source-line-no">339</span><span id="line-339">                            element.accept( textCollector, texts );</span>
+<span class="source-line-no">340</span><span id="line-340">                            processedElements.add( element );</span>
+<span class="source-line-no">341</span><span id="line-341">                        }</span>
+<span class="source-line-no">342</span><span id="line-342">                        else</span>
+<span class="source-line-no">343</span><span id="line-343">                        {</span>
+<span class="source-line-no">344</span><span id="line-344">                            printMessage( ERROR, format( MSG_IllegalAnnotationUse, element.getSimpleName().toString(), BaseBundleName.class.getSimpleName() ), element );</span>
+<span class="source-line-no">345</span><span id="line-345">                            throw new IllegalAnnotationError( BaseBundleName.class );</span>
+<span class="source-line-no">346</span><span id="line-346">                        }</span>
+<span class="source-line-no">347</span><span id="line-347">                    }</span>
+<span class="source-line-no">348</span><span id="line-348"></span>
+<span class="source-line-no">349</span><span id="line-349">                    final Collection&lt;Element&gt; textAnnotatedElements = new HashSet&lt;&gt;( roundEnvironment.getElementsAnnotatedWith( Text.class ) );</span>
+<span class="source-line-no">350</span><span id="line-350">                    textAnnotatedElements.addAll( roundEnvironment.getElementsAnnotatedWith( Texts.class ) );</span>
+<span class="source-line-no">351</span><span id="line-351">                    for( final var element : textAnnotatedElements )</span>
+<span class="source-line-no">352</span><span id="line-352">                    {</span>
+<span class="source-line-no">353</span><span id="line-353">                        if( (element instanceof VariableElement) || (element.getKind() == METHOD) )</span>
+<span class="source-line-no">354</span><span id="line-354">                        {</span>
+<span class="source-line-no">355</span><span id="line-355">                            element.accept( textCollector, texts );</span>
+<span class="source-line-no">356</span><span id="line-356">                            processedElements.add( element );</span>
+<span class="source-line-no">357</span><span id="line-357">                        }</span>
+<span class="source-line-no">358</span><span id="line-358">                        else</span>
+<span class="source-line-no">359</span><span id="line-359">                        {</span>
+<span class="source-line-no">360</span><span id="line-360">                            printMessage( ERROR, format( MSG_IllegalAnnotationUse, element.getSimpleName().toString(), BaseBundleName.class.getSimpleName() ), element );</span>
+<span class="source-line-no">361</span><span id="line-361">                            throw new IllegalAnnotationError( Text.class );</span>
+<span class="source-line-no">362</span><span id="line-362">                        }</span>
+<span class="source-line-no">363</span><span id="line-363">                    }</span>
+<span class="source-line-no">364</span><span id="line-364">                }</span>
+<span class="source-line-no">365</span><span id="line-365">            }</span>
+<span class="source-line-no">366</span><span id="line-366"></span>
+<span class="source-line-no">367</span><span id="line-367">            /*</span>
+<span class="source-line-no">368</span><span id="line-368">             * Even when no text or message annotation was found, there could</span>
+<span class="source-line-no">369</span><span id="line-369">             * be still some additional texts.</span>
+<span class="source-line-no">370</span><span id="line-370">             */</span>
+<span class="source-line-no">371</span><span id="line-371">            final List&lt;Element&gt; useAdditionalTextsAnnotatedElements = new ArrayList&lt;&gt;( roundEnvironment.getElementsAnnotatedWith( UseAdditionalTexts.class ) );</span>
+<span class="source-line-no">372</span><span id="line-372">            final Optional&lt;String&gt; textFileLocation = switch( useAdditionalTextsAnnotatedElements.size() )</span>
+<span class="source-line-no">373</span><span id="line-373">            {</span>
+<span class="source-line-no">374</span><span id="line-374">                case 0 -&gt; Optional.empty();</span>
+<span class="source-line-no">375</span><span id="line-375">                case 1 -&gt;</span>
+<span class="source-line-no">376</span><span id="line-376">                    {</span>
+<span class="source-line-no">377</span><span id="line-377">                        final var annotation = useAdditionalTextsAnnotatedElements.get( 0 ).getAnnotation( UseAdditionalTexts.class );</span>
+<span class="source-line-no">378</span><span id="line-378">                        final var location = annotation.location();</span>
+<span class="source-line-no">379</span><span id="line-379">                        yield isEmptyOrBlank( location ) ? Optional.empty() : Optional.of( location );</span>
+<span class="source-line-no">380</span><span id="line-380">                    }</span>
+<span class="source-line-no">381</span><span id="line-381">                default -&gt;</span>
+<span class="source-line-no">382</span><span id="line-382">                {</span>
+<span class="source-line-no">383</span><span id="line-383">                    final var msg = format( MSG_MultipleElements, EMPTY_STRING, UseAdditionalTexts.class.getSimpleName() );</span>
+<span class="source-line-no">384</span><span id="line-384">                    printMessage( ERROR, msg );</span>
+<span class="source-line-no">385</span><span id="line-385">                    throw new IllegalAnnotationError( msg, UseAdditionalTexts.class );</span>
+<span class="source-line-no">386</span><span id="line-386">                }</span>
+<span class="source-line-no">387</span><span id="line-387">            };</span>
+<span class="source-line-no">388</span><span id="line-388"></span>
+<span class="source-line-no">389</span><span id="line-389">            printMessage( NOTE, "Generate ResourceBundles" );</span>
+<span class="source-line-no">390</span><span id="line-390">            generateResourceBundle( textFileLocation, texts, processedElements.toArray( Element []::new ) );</span>
+<span class="source-line-no">391</span><span id="line-391">        }</span>
+<span class="source-line-no">392</span><span id="line-392"></span>
+<span class="source-line-no">393</span><span id="line-393">        //---* Done *----------------------------------------------------------</span>
+<span class="source-line-no">394</span><span id="line-394">        return retValue;</span>
+<span class="source-line-no">395</span><span id="line-395">    }   //  process()</span>
+<span class="source-line-no">396</span><span id="line-396"></span>
+<span class="source-line-no">397</span><span id="line-397">    /**</span>
+<span class="source-line-no">398</span><span id="line-398">     *  Searches the file with the additional texts</span>
+<span class="source-line-no">399</span><span id="line-399">     *  ({@value org.tquadrat.foundation.i18n.I18nUtil#ADDITIONAL_TEXT_FILE})</span>
+<span class="source-line-no">400</span><span id="line-400">     *  on the location configured with the annotation processor option</span>
+<span class="source-line-no">401</span><span id="line-401">     *  {@value org.tquadrat.foundation.i18n.I18nUtil#ADDITIONAL_TEXT_LOCATION}.</span>
+<span class="source-line-no">402</span><span id="line-402">     *</span>
+<span class="source-line-no">403</span><span id="line-403">     *  @return An instance of</span>
+<span class="source-line-no">404</span><span id="line-404">     *      {@link Optional}</span>
+<span class="source-line-no">405</span><span id="line-405">     *      that holds the</span>
+<span class="source-line-no">406</span><span id="line-406">     *      {@link InputSource}</span>
+<span class="source-line-no">407</span><span id="line-407">     *      for the file.</span>
+<span class="source-line-no">408</span><span id="line-408">     */</span>
+<span class="source-line-no">409</span><span id="line-409">    private final Optional&lt;InputSource&gt; searchAdditionalTextsOnConfiguredLocation()</span>
+<span class="source-line-no">410</span><span id="line-410">    {</span>
+<span class="source-line-no">411</span><span id="line-411">        Optional&lt;InputSource&gt; retValue = Optional.empty();</span>
+<span class="source-line-no">412</span><span id="line-412"></span>
+<span class="source-line-no">413</span><span id="line-413">        final var option = getOption( ADDITIONAL_TEXT_LOCATION );</span>
+<span class="source-line-no">414</span><span id="line-414">        if( option.isPresent() )</span>
+<span class="source-line-no">415</span><span id="line-415">        {</span>
+<span class="source-line-no">416</span><span id="line-416">            final var folder = new File( option.get() );</span>
+<span class="source-line-no">417</span><span id="line-417">            if( folder.exists() &amp;&amp; folder.isDirectory() )</span>
+<span class="source-line-no">418</span><span id="line-418">            {</span>
+<span class="source-line-no">419</span><span id="line-419">                var textFile = new File( folder, ADDITIONAL_TEXT_FILE );</span>
+<span class="source-line-no">420</span><span id="line-420">                var textFileName = textFile.getAbsolutePath();</span>
+<span class="source-line-no">421</span><span id="line-421">                try</span>
+<span class="source-line-no">422</span><span id="line-422">                {</span>
+<span class="source-line-no">423</span><span id="line-423">                    textFile = textFile.getCanonicalFile().getAbsoluteFile();</span>
+<span class="source-line-no">424</span><span id="line-424">                    textFileName = textFile.getAbsolutePath();</span>
+<span class="source-line-no">425</span><span id="line-425">                    if( textFile.exists() &amp;&amp; textFile.isFile() )</span>
+<span class="source-line-no">426</span><span id="line-426">                    {</span>
+<span class="source-line-no">427</span><span id="line-427">                        final var inputStream = new FileInputStream( textFile );</span>
+<span class="source-line-no">428</span><span id="line-428"></span>
+<span class="source-line-no">429</span><span id="line-429">                        //---* Create the return value *-----------------------</span>
+<span class="source-line-no">430</span><span id="line-430">                        retValue = Optional.of( new InputSource( inputStream ) );</span>
+<span class="source-line-no">431</span><span id="line-431"></span>
+<span class="source-line-no">432</span><span id="line-432">                        textFileName = textFile.toURI().toURL().toExternalForm();</span>
+<span class="source-line-no">433</span><span id="line-433">                        printMessage( NOTE, "Reading additional texts from '%s' (configured location)".formatted( textFileName ) );</span>
+<span class="source-line-no">434</span><span id="line-434">                    }</span>
+<span class="source-line-no">435</span><span id="line-435">                }</span>
+<span class="source-line-no">436</span><span id="line-436">                catch( @SuppressWarnings( "OverlyBroadCatchBlock" ) final IOException ignored )</span>
+<span class="source-line-no">437</span><span id="line-437">                {</span>
+<span class="source-line-no">438</span><span id="line-438">                    printMessage( NOTE, "Cannot open file '%s' with additional texts".formatted( textFileName ) );</span>
+<span class="source-line-no">439</span><span id="line-439">                }</span>
+<span class="source-line-no">440</span><span id="line-440">            }</span>
+<span class="source-line-no">441</span><span id="line-441">        }</span>
+<span class="source-line-no">442</span><span id="line-442"></span>
+<span class="source-line-no">443</span><span id="line-443">        //---* Done *----------------------------------------------------------</span>
+<span class="source-line-no">444</span><span id="line-444">        return retValue;</span>
+<span class="source-line-no">445</span><span id="line-445">    }   //  searchAdditionalTextsOnConfiguredLocation</span>
+<span class="source-line-no">446</span><span id="line-446"></span>
+<span class="source-line-no">447</span><span id="line-447">    /**</span>
+<span class="source-line-no">448</span><span id="line-448">     *  Searches the file with the additional texts</span>
+<span class="source-line-no">449</span><span id="line-449">     *  ({@value org.tquadrat.foundation.i18n.I18nUtil#ADDITIONAL_TEXT_FILE})</span>
+<span class="source-line-no">450</span><span id="line-450">     *  on the location provided by the annotation</span>
+<span class="source-line-no">451</span><span id="line-451">     *  {@link UseAdditionalTexts &amp;#64;UseAdditionalTexts}.</span>
+<span class="source-line-no">452</span><span id="line-452">     *</span>
+<span class="source-line-no">453</span><span id="line-453">     *  @param  location    The location for the file with the additional</span>
+<span class="source-line-no">454</span><span id="line-454">     *      texts.</span>
+<span class="source-line-no">455</span><span id="line-455">     *  @return An instance of</span>
+<span class="source-line-no">456</span><span id="line-456">     *      {@link Optional}</span>
+<span class="source-line-no">457</span><span id="line-457">     *      that holds the</span>
+<span class="source-line-no">458</span><span id="line-458">     *      {@link InputSource}</span>
+<span class="source-line-no">459</span><span id="line-459">     *      for the file.</span>
+<span class="source-line-no">460</span><span id="line-460">     */</span>
+<span class="source-line-no">461</span><span id="line-461">    private final Optional&lt;InputSource&gt; searchAdditionalTextsOnProvidedLocation( final String location )</span>
+<span class="source-line-no">462</span><span id="line-462">    {</span>
+<span class="source-line-no">463</span><span id="line-463">        Optional&lt;InputSource&gt; retValue = Optional.empty();</span>
+<span class="source-line-no">464</span><span id="line-464"></span>
+<span class="source-line-no">465</span><span id="line-465">        final var folder = new File( location );</span>
+<span class="source-line-no">466</span><span id="line-466">        if( folder.exists() &amp;&amp; folder.isDirectory() )</span>
+<span class="source-line-no">467</span><span id="line-467">        {</span>
+<span class="source-line-no">468</span><span id="line-468">            var textFile = new File( folder, ADDITIONAL_TEXT_FILE );</span>
+<span class="source-line-no">469</span><span id="line-469">            var textFileName = textFile.getAbsolutePath();</span>
+<span class="source-line-no">470</span><span id="line-470">            try</span>
+<span class="source-line-no">471</span><span id="line-471">            {</span>
+<span class="source-line-no">472</span><span id="line-472">                textFile = textFile.getCanonicalFile().getAbsoluteFile();</span>
+<span class="source-line-no">473</span><span id="line-473">                textFileName = textFile.getAbsolutePath();</span>
+<span class="source-line-no">474</span><span id="line-474">                if( textFile.exists() &amp;&amp; textFile.isFile() )</span>
+<span class="source-line-no">475</span><span id="line-475">                {</span>
+<span class="source-line-no">476</span><span id="line-476">                    final var inputStream = new FileInputStream( textFile );</span>
+<span class="source-line-no">477</span><span id="line-477"></span>
+<span class="source-line-no">478</span><span id="line-478">                    //---* Create the return value *---------------------------</span>
+<span class="source-line-no">479</span><span id="line-479">                    retValue = Optional.of( new InputSource( inputStream ) );</span>
+<span class="source-line-no">480</span><span id="line-480"></span>
+<span class="source-line-no">481</span><span id="line-481">                    textFileName = textFile.toURI().toURL().toExternalForm();</span>
+<span class="source-line-no">482</span><span id="line-482">                    printMessage( NOTE, "Reading additional texts from '%s' (provided location)".formatted( textFileName ) );</span>
+<span class="source-line-no">483</span><span id="line-483">                }</span>
+<span class="source-line-no">484</span><span id="line-484">            }</span>
+<span class="source-line-no">485</span><span id="line-485">            catch( @SuppressWarnings( "OverlyBroadCatchBlock" ) final IOException ignored )</span>
+<span class="source-line-no">486</span><span id="line-486">            {</span>
+<span class="source-line-no">487</span><span id="line-487">                printMessage( NOTE, "Cannot open file '%s' with additional texts".formatted( textFileName ) );</span>
+<span class="source-line-no">488</span><span id="line-488">            }</span>
+<span class="source-line-no">489</span><span id="line-489">        }</span>
+<span class="source-line-no">490</span><span id="line-490"></span>
+<span class="source-line-no">491</span><span id="line-491">        //---* Done *----------------------------------------------------------</span>
+<span class="source-line-no">492</span><span id="line-492">        return retValue;</span>
+<span class="source-line-no">493</span><span id="line-493">    }   //  searchAdditionalTextsOnProvidedLocation</span>
+<span class="source-line-no">494</span><span id="line-494"></span>
+<span class="source-line-no">495</span><span id="line-495">    /**</span>
+<span class="source-line-no">496</span><span id="line-496">     *  Searches the file with the additional texts</span>
+<span class="source-line-no">497</span><span id="line-497">     *  ({@value org.tquadrat.foundation.i18n.I18nUtil#ADDITIONAL_TEXT_FILE})</span>
+<span class="source-line-no">498</span><span id="line-498">     *  on the location determined by</span>
+<span class="source-line-no">499</span><span id="line-499">     *  {@link javax.tools.StandardLocation#SOURCE_PATH}.</span>
+<span class="source-line-no">500</span><span id="line-500">     *</span>
+<span class="source-line-no">501</span><span id="line-501">     *  @param filer    The</span>
+<span class="source-line-no">502</span><span id="line-502">     *      {@link Filer}</span>
+<span class="source-line-no">503</span><span id="line-503">     *      instance that provides the {@code SOURCE_PATH} location.</span>
+<span class="source-line-no">504</span><span id="line-504">     *  @return An instance of</span>
+<span class="source-line-no">505</span><span id="line-505">     *      {@link Optional}</span>
+<span class="source-line-no">506</span><span id="line-506">     *      that holds the</span>
+<span class="source-line-no">507</span><span id="line-507">     *      {@link InputSource}</span>
+<span class="source-line-no">508</span><span id="line-508">     *      for the file.</span>
+<span class="source-line-no">509</span><span id="line-509">     */</span>
+<span class="source-line-no">510</span><span id="line-510">    @SuppressWarnings( "AssignmentToNull" )</span>
+<span class="source-line-no">511</span><span id="line-511">    private final Optional&lt;InputSource&gt; searchAdditionalTextsOnSourceTree( final Filer filer )</span>
+<span class="source-line-no">512</span><span id="line-512">    {</span>
+<span class="source-line-no">513</span><span id="line-513">        Optional&lt;InputSource&gt; retValue = Optional.empty();</span>
+<span class="source-line-no">514</span><span id="line-514"></span>
+<span class="source-line-no">515</span><span id="line-515">        FileObject textFile;</span>
+<span class="source-line-no">516</span><span id="line-516">        try</span>
+<span class="source-line-no">517</span><span id="line-517">        {</span>
+<span class="source-line-no">518</span><span id="line-518">            textFile = filer.getResource( SOURCE_PATH, EMPTY_STRING, ADDITIONAL_TEXT_FILE );</span>
+<span class="source-line-no">519</span><span id="line-519">        }</span>
+<span class="source-line-no">520</span><span id="line-520">        catch( @SuppressWarnings( "unused" ) final IOException ignored )</span>
+<span class="source-line-no">521</span><span id="line-521">        {</span>
+<span class="source-line-no">522</span><span id="line-522">            printMessage( NOTE, "Cannot open file '%s' with additional texts".formatted( ADDITIONAL_TEXT_FILE ) );</span>
+<span class="source-line-no">523</span><span id="line-523">            textFile = null;</span>
+<span class="source-line-no">524</span><span id="line-524">        }</span>
+<span class="source-line-no">525</span><span id="line-525">        if( nonNull( textFile ) )</span>
+<span class="source-line-no">526</span><span id="line-526">        {</span>
+<span class="source-line-no">527</span><span id="line-527">            var textFileName = ADDITIONAL_TEXT_FILE;</span>
+<span class="source-line-no">528</span><span id="line-528">            try</span>
+<span class="source-line-no">529</span><span id="line-529">            {</span>
+<span class="source-line-no">530</span><span id="line-530">                textFileName = textFile.toUri().toURL().toExternalForm();</span>
+<span class="source-line-no">531</span><span id="line-531"></span>
+<span class="source-line-no">532</span><span id="line-532">                //---* Create the input stream *-------------------------------</span>
+<span class="source-line-no">533</span><span id="line-533">                final var inputStream = textFile.openInputStream();</span>
+<span class="source-line-no">534</span><span id="line-534"></span>
+<span class="source-line-no">535</span><span id="line-535">                //---* Create the input source *-------------------------------</span>
+<span class="source-line-no">536</span><span id="line-536">                final var inputSource = new InputSource( inputStream );</span>
+<span class="source-line-no">537</span><span id="line-537"></span>
+<span class="source-line-no">538</span><span id="line-538">                //---* Create the return value *-------------------------------</span>
+<span class="source-line-no">539</span><span id="line-539">                retValue = Optional.of( inputSource );</span>
+<span class="source-line-no">540</span><span id="line-540"></span>
+<span class="source-line-no">541</span><span id="line-541">                printMessage( NOTE, "Reading additional texts from '%s' (source tree)".formatted( textFileName ) );</span>
+<span class="source-line-no">542</span><span id="line-542">            }</span>
+<span class="source-line-no">543</span><span id="line-543">            catch( @SuppressWarnings( "OverlyBroadCatchBlock" ) final IllegalArgumentException | IOException e )</span>
+<span class="source-line-no">544</span><span id="line-544">            {</span>
+<span class="source-line-no">545</span><span id="line-545">                printMessage( ERROR, "Unable to read file '%s' with additional texts: %s".formatted( textFileName, e.toString() ) );</span>
+<span class="source-line-no">546</span><span id="line-546">                throw new AnnotationProcessingError( e );</span>
+<span class="source-line-no">547</span><span id="line-547">            }</span>
+<span class="source-line-no">548</span><span id="line-548">        }</span>
+<span class="source-line-no">549</span><span id="line-549"></span>
+<span class="source-line-no">550</span><span id="line-550">        //---* Done *----------------------------------------------------------</span>
+<span class="source-line-no">551</span><span id="line-551">        return retValue;</span>
+<span class="source-line-no">552</span><span id="line-552">    }   //  searchAdditionalTextsOnSourceTree()</span>
+<span class="source-line-no">553</span><span id="line-553"></span>
+<span class="source-line-no">554</span><span id="line-554">    /**</span>
+<span class="source-line-no">555</span><span id="line-555">     *  Write the resource bundle properties to the given</span>
+<span class="source-line-no">556</span><span id="line-556">     *  {@link Writer}.</span>
+<span class="source-line-no">557</span><span id="line-557">     *</span>
+<span class="source-line-no">558</span><span id="line-558">     *  @param  data    The properties.</span>
+<span class="source-line-no">559</span><span id="line-559">     *  @param  writer  The target {@code Writer} instance.</span>
+<span class="source-line-no">560</span><span id="line-560">     *  @throws IOException Writing the resource bundle file failed.</span>
+<span class="source-line-no">561</span><span id="line-561">     */</span>
 <span class="source-line-no">562</span><span id="line-562">    private final void writeResourceBundleFile( final Collection&lt;TextEntry&gt; data, final Writer writer ) throws IOException</span>
 <span class="source-line-no">563</span><span id="line-563">    {</span>
 <span class="source-line-no">564</span><span id="line-564">        requireNonNullArgument( writer, "writer" );</span>

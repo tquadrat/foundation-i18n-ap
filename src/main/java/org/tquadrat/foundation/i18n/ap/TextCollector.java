@@ -1,6 +1,6 @@
 /*
  * ============================================================================
- * Copyright © 2002-2021 by Thomas Thrien.
+ * Copyright © 2002-2023 by Thomas Thrien.
  * All Rights Reserved.
  * ============================================================================
  * Licensed to the public under the agreements of the GNU Lesser General Public
@@ -34,7 +34,6 @@ import static org.tquadrat.foundation.util.JavaUtils.isGetter;
 import static org.tquadrat.foundation.util.JavaUtils.isSetter;
 import static org.tquadrat.foundation.util.JavaUtils.retrievePropertyName;
 import static org.tquadrat.foundation.util.StringUtils.capitalize;
-import static org.tquadrat.foundation.util.StringUtils.format;
 import static org.tquadrat.foundation.util.SystemUtils.retrieveLocale;
 
 import javax.lang.model.element.Element;
@@ -64,12 +63,12 @@ import org.tquadrat.foundation.i18n.Translation;
  *  files from the annotations.
  *
  *  @extauthor Thomas Thrien - thomas.thrien@tquadrat.org
- *  @version $Id: TextCollector.java 933 2021-07-03 13:32:17Z tquadrat $
+ *  @version $Id: TextCollector.java 1062 2023-09-25 23:11:41Z tquadrat $
  *  @since 0.0.2
  *
  *  @UMLGraph.link
  */
-@ClassVersion( sourceVersion = "$Id: TextCollector.java 933 2021-07-03 13:32:17Z tquadrat $" )
+@ClassVersion( sourceVersion = "$Id: TextCollector.java 1062 2023-09-25 23:11:41Z tquadrat $" )
 @API( status = INTERNAL, since = "0.1.0" )
 public class TextCollector extends SimpleElementVisitor9<Void,Map<Locale,SortedMap<String,TextEntry>>>
 {
@@ -127,7 +126,7 @@ public class TextCollector extends SimpleElementVisitor9<Void,Map<Locale,SortedM
      *      {@code false} otherwise.
      *  @param  translations    The texts in the various languages.
      */
-    @SuppressWarnings( {"MethodCanBeVariableArityMethod", "OptionalGetWithoutIsPresent"} )
+    @SuppressWarnings( {"MethodCanBeVariableArityMethod", "OptionalGetWithoutIsPresent", "MethodWithTooManyParameters"} )
     private final void addTextEntry( @SuppressWarnings( "BoundedWildcard" ) final Map<Locale,SortedMap<String,TextEntry>> texts, final Element element, final String key, final String description, final String className, final boolean isMessage, final Translation [] translations )
     {
         for( final var translation : requireNonNullArgument( translations, "translations" ) )
@@ -138,16 +137,16 @@ public class TextCollector extends SimpleElementVisitor9<Void,Map<Locale,SortedM
             final var entry = new TextEntry( key, isMessage, locale, description, text, className );
 
             //---* Get the text map *------------------------------------------
-            final var textMap = texts.computeIfAbsent( locale, k -> new TreeMap<>() );
+            final var textMap = texts.computeIfAbsent( locale, currentLocale -> new TreeMap<>() );
 
             //---* Add the entry *---------------------------------------------
             if( textMap.containsKey( key ) )
             {
-                final var message = format(
+                final var message =
                     """
                     Key '%s' is not unique (Annotation: %s in class '%s')
-                    Check translation locale in case the key is not a real duplicate""",
-                    key, isMessage ? "@Message" : "@Text", className );
+                    Check translation locale in case the key is not a real duplicate"""
+                        .formatted( key, isMessage ? "@Message" : "@Text", className );
                 m_Environment.printMessage( ERROR, message, element );
                 throw new IllegalAnnotationError( message );
             }
@@ -164,6 +163,7 @@ public class TextCollector extends SimpleElementVisitor9<Void,Map<Locale,SortedM
      *  @param  className   The fully qualified name of the class that defines
      *      the text.
      */
+    @SuppressWarnings( {"OverlyNestedMethod", "OverlyComplexMethod"} )
     private final void processTextAnnotation( final Map<Locale,SortedMap<String,TextEntry>> texts, final Element element, final Text annotation, final String className )
     {
         //---* The description of the text *-----------------------------------
@@ -195,7 +195,7 @@ public class TextCollector extends SimpleElementVisitor9<Void,Map<Locale,SortedM
                     }
                     else
                     {
-                        final var message = format( "Missing id for Element '%s'", element.getSimpleName().toString() );
+                        final var message = "Missing id for Element '%s'".formatted( element.getSimpleName().toString() );
                         m_Environment.printMessage( ERROR, message, element );
                         throw new IllegalAnnotationError( message );
                     }
@@ -226,7 +226,7 @@ public class TextCollector extends SimpleElementVisitor9<Void,Map<Locale,SortedM
                             }
                             catch( final IllegalArgumentException e )
                             {
-                                final var message = format( "Id '%s' is invalid: %s", id, e.toString() );
+                                final var message = "Id '%s' is invalid: %s".formatted( id, e.toString() );
                                 m_Environment.printMessage( ERROR, message, element );
                                 throw new IllegalAnnotationError( message, e );
                             }
@@ -315,7 +315,7 @@ public class TextCollector extends SimpleElementVisitor9<Void,Map<Locale,SortedM
 
                 //---* The message id *----------------------------------------
                 String key = null;
-                if( value instanceof Integer msgId )
+                if( value instanceof final Integer msgId )
                 {
                     key = composeMessageKey( m_MessagePrefix, msgId.intValue() );
                 }
