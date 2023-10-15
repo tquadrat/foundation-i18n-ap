@@ -456,7 +456,7 @@
         </symbol>
         <clipPath id='ID000006'>
             <rect class='externalClass'
-                  height='95.000'
+                  height='161.000'
                   width='1282.000'
                   x='0.000'
                   y='0.000'/>
@@ -467,7 +467,7 @@
                     <rect x='0.000'
                           y='0.000'
                           width='1282.000'
-                          height='95.000'
+                          height='161.000'
                           class='externalClass'/>
                     <line x1='0.000'
                           y1='28.000'
@@ -499,6 +499,18 @@
                     <text x='5.000'
                           y='91.000'
                           class='abstract'>+ printMessage(arg0:javax.tools.Diagnostic.Kind,arg1:java.lang.CharSequence,arg2:javax.lang.model.element.Element,arg3:javax.lang.model.element.AnnotationMirror,arg4:javax.lang.model.element.AnnotationValue):void</text>
+                    <text x='5.000'
+                          y='102.000'>&#x2A22; printError(arg0:java.lang.CharSequence):void</text>
+                    <text x='5.000'
+                          y='113.000'>&#x2A22; printError(arg0:java.lang.CharSequence,arg1:javax.lang.model.element.Element):void</text>
+                    <text x='5.000'
+                          y='124.000'>&#x2A22; printWarning(arg0:java.lang.CharSequence):void</text>
+                    <text x='5.000'
+                          y='135.000'>&#x2A22; printWarning(arg0:java.lang.CharSequence,arg1:javax.lang.model.element.Element):void</text>
+                    <text x='5.000'
+                          y='146.000'>&#x2A22; printNote(arg0:java.lang.CharSequence):void</text>
+                    <text x='5.000'
+                          y='157.000'>&#x2A22; printNote(arg0:java.lang.CharSequence,arg1:javax.lang.model.element.Element):void</text>
                 </g>
             </g>
         </symbol>
@@ -575,7 +587,7 @@
           d='M1835.000,613.000 c0.000,-85.000,-50.000,0.000,-50.000,-85.000 v-15'
           marker-end='url(#implementation)'/>
     <path class='inheritance'
-          d='M1760.000,297.000 c0.000,-162.000,706.000,0.000,706.000,-162.000 v-15'
+          d='M1760.000,297.000 c0.000,-96.000,706.000,0.000,706.000,-96.000 v-15'
           marker-end='url(#inheritance)'/>
     <path class='inheritance'
           d='M1810.000,297.000 c0.000,-118.000,1541.000,0.000,1541.000,-118.000 v-15'
