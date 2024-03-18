@@ -47,6 +47,7 @@ import org.tquadrat.foundation.annotation.ClassVersion;
 public record TextEntry( String key, boolean isMessage, Locale locale, String description, String text, String className )
 { /* Empty */ }
 //  record TextEntry
+
 /*
  *  End of File
  */
