@@ -28,7 +28,7 @@ import org.tquadrat.foundation.annotation.ClassVersion;
  *  Entries for resource bundle properties files.
  *
  *  @extauthor Thomas Thrien - thomas.thrien@tquadrat.org
- *  @version $Id: TextEntry.java 880 2021-02-27 10:47:40Z tquadrat $
+ *  @version $Id: TextEntry.java 1122 2024-03-18 00:10:07Z tquadrat $
  *  @since 0.1.0
  *
  *  @param  key The resource bundle key for the text or message.
@@ -42,7 +42,7 @@ import org.tquadrat.foundation.annotation.ClassVersion;
  *
  *  @UMLGraph.link
  */
-@ClassVersion( sourceVersion = "$Id: TextEntry.java 880 2021-02-27 10:47:40Z tquadrat $" )
+@ClassVersion( sourceVersion = "$Id: TextEntry.java 1122 2024-03-18 00:10:07Z tquadrat $" )
 @API( status = INTERNAL, since = "0.1.0" )
 public record TextEntry( String key, boolean isMessage, Locale locale, String description, String text, String className )
 { /* Empty */ }
