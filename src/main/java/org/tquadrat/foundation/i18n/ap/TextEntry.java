@@ -36,7 +36,9 @@ import org.tquadrat.foundation.annotation.ClassVersion;
  *      {@code false} if not.
  *  @param  locale  The locale for this translation of a text or a message.
  *  @param  description The description for the text or message.
- *  @param  text    The text or message itself for the given locale.
+ *  @param  text    The text or message itself for the given locale;
+ *      newlines will be replaced by the respective escape sequence
+ *      (&quot;{@code \n}&quot;).
  *  @param  className   The fully qualified name of the class that defines
  *      the text or message.
  *
@@ -45,7 +47,27 @@ import org.tquadrat.foundation.annotation.ClassVersion;
 @ClassVersion( sourceVersion = "$Id: TextEntry.java 1122 2024-03-18 00:10:07Z tquadrat $" )
 @API( status = INTERNAL, since = "0.1.0" )
 public record TextEntry( String key, boolean isMessage, Locale locale, String description, String text, String className )
-{ /* Empty */ }
+{
+    /**
+     *  Creates a new instance of {@code TexEntry}.
+     *
+     *  @param  key The resource bundle key for the text or message.
+     *  @param  isMessage   {@code true} if the entry is for a message,
+     *      {@code false} if not.
+     *  @param  locale  The locale for this translation of a text or a message.
+     *  @param  description The description for the text or message.
+     *  @param  text    The text or message itself for the given locale;
+     *      newlines will be replaced by the respective escape sequence
+     *      (&quot;{@code \n}&quot;).
+     *  @param  className   The fully qualified name of the class that defines
+     *      the text or message.
+     */
+    @SuppressWarnings( "ConstructorWithTooManyParameters" )
+    public TextEntry
+    {
+        text = text.replace( "\n", "\\n" );
+    }   //  TextEntry
+}
 //  record TextEntry
 
 /*

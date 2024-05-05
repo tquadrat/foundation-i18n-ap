@@ -49,21 +49,43 @@
 <span class="source-line-no">036</span><span id="line-36"> *      {@code false} if not.</span>
 <span class="source-line-no">037</span><span id="line-37"> *  @param  locale  The locale for this translation of a text or a message.</span>
 <span class="source-line-no">038</span><span id="line-38"> *  @param  description The description for the text or message.</span>
-<span class="source-line-no">039</span><span id="line-39"> *  @param  text    The text or message itself for the given locale.</span>
-<span class="source-line-no">040</span><span id="line-40"> *  @param  className   The fully qualified name of the class that defines</span>
-<span class="source-line-no">041</span><span id="line-41"> *      the text or message.</span>
-<span class="source-line-no">042</span><span id="line-42"> *</span>
-<span class="source-line-no">043</span><span id="line-43"> *  @UMLGraph.link</span>
-<span class="source-line-no">044</span><span id="line-44"> */</span>
-<span class="source-line-no">045</span><span id="line-45">@ClassVersion( sourceVersion = "$Id: TextEntry.java 1122 2024-03-18 00:10:07Z tquadrat $" )</span>
-<span class="source-line-no">046</span><span id="line-46">@API( status = INTERNAL, since = "0.1.0" )</span>
-<span class="source-line-no">047</span><span id="line-47">public record TextEntry( String key, boolean isMessage, Locale locale, String description, String text, String className )</span>
-<span class="source-line-no">048</span><span id="line-48">{ /* Empty */ }</span>
-<span class="source-line-no">049</span><span id="line-49">//  record TextEntry</span>
-<span class="source-line-no">050</span><span id="line-50"></span>
-<span class="source-line-no">051</span><span id="line-51">/*</span>
-<span class="source-line-no">052</span><span id="line-52"> *  End of File</span>
-<span class="source-line-no">053</span><span id="line-53"> */</span>
+<span class="source-line-no">039</span><span id="line-39"> *  @param  text    The text or message itself for the given locale;</span>
+<span class="source-line-no">040</span><span id="line-40"> *      newlines will be replaced by the respective escape sequence</span>
+<span class="source-line-no">041</span><span id="line-41"> *      (&amp;quot;{@code \n}&amp;quot;).</span>
+<span class="source-line-no">042</span><span id="line-42"> *  @param  className   The fully qualified name of the class that defines</span>
+<span class="source-line-no">043</span><span id="line-43"> *      the text or message.</span>
+<span class="source-line-no">044</span><span id="line-44"> *</span>
+<span class="source-line-no">045</span><span id="line-45"> *  @UMLGraph.link</span>
+<span class="source-line-no">046</span><span id="line-46"> */</span>
+<span class="source-line-no">047</span><span id="line-47">@ClassVersion( sourceVersion = "$Id: TextEntry.java 1122 2024-03-18 00:10:07Z tquadrat $" )</span>
+<span class="source-line-no">048</span><span id="line-48">@API( status = INTERNAL, since = "0.1.0" )</span>
+<span class="source-line-no">049</span><span id="line-49">public record TextEntry( String key, boolean isMessage, Locale locale, String description, String text, String className )</span>
+<span class="source-line-no">050</span><span id="line-50">{</span>
+<span class="source-line-no">051</span><span id="line-51">    /**</span>
+<span class="source-line-no">052</span><span id="line-52">     *  Creates a new instance of {@code TexEntry}.</span>
+<span class="source-line-no">053</span><span id="line-53">     *</span>
+<span class="source-line-no">054</span><span id="line-54">     *  @param  key The resource bundle key for the text or message.</span>
+<span class="source-line-no">055</span><span id="line-55">     *  @param  isMessage   {@code true} if the entry is for a message,</span>
+<span class="source-line-no">056</span><span id="line-56">     *      {@code false} if not.</span>
+<span class="source-line-no">057</span><span id="line-57">     *  @param  locale  The locale for this translation of a text or a message.</span>
+<span class="source-line-no">058</span><span id="line-58">     *  @param  description The description for the text or message.</span>
+<span class="source-line-no">059</span><span id="line-59">     *  @param  text    The text or message itself for the given locale;</span>
+<span class="source-line-no">060</span><span id="line-60">     *      newlines will be replaced by the respective escape sequence</span>
+<span class="source-line-no">061</span><span id="line-61">     *      (&amp;quot;{@code \n}&amp;quot;).</span>
+<span class="source-line-no">062</span><span id="line-62">     *  @param  className   The fully qualified name of the class that defines</span>
+<span class="source-line-no">063</span><span id="line-63">     *      the text or message.</span>
+<span class="source-line-no">064</span><span id="line-64">     */</span>
+<span class="source-line-no">065</span><span id="line-65">    @SuppressWarnings( "ConstructorWithTooManyParameters" )</span>
+<span class="source-line-no">066</span><span id="line-66">    public TextEntry</span>
+<span class="source-line-no">067</span><span id="line-67">    {</span>
+<span class="source-line-no">068</span><span id="line-68">        text = text.replace( "\n", "\\n" );</span>
+<span class="source-line-no">069</span><span id="line-69">    }   //  TextEntry</span>
+<span class="source-line-no">070</span><span id="line-70">}</span>
+<span class="source-line-no">071</span><span id="line-71">//  record TextEntry</span>
+<span class="source-line-no">072</span><span id="line-72"></span>
+<span class="source-line-no">073</span><span id="line-73">/*</span>
+<span class="source-line-no">074</span><span id="line-74"> *  End of File</span>
+<span class="source-line-no">075</span><span id="line-75"> */</span>
 
 
 
