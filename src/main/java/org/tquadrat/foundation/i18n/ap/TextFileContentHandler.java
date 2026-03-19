@@ -1,6 +1,6 @@
 /*
  * ============================================================================
- * Copyright © 2002-2023 by Thomas Thrien.
+ * Copyright © 2002-2025 by Thomas Thrien.
  * All Rights Reserved.
  * ============================================================================
  * Licensed to the public under the agreements of the GNU Lesser General Public
@@ -49,12 +49,12 @@ import org.xml.sax.helpers.DefaultHandler;
  *  that handles the files for additional text resources.
  *
  *  @extauthor Thomas Thrien - thomas.thrien@tquadrat.org
- *  @version $Id: TextFileContentHandler.java 1062 2023-09-25 23:11:41Z tquadrat $
+ *  @version $Id: TextFileContentHandler.java 1151 2025-10-01 21:32:15Z tquadrat $
  *  @since 0.1.0
  *
  *  @UMLGraph.link
  */
-@ClassVersion( sourceVersion = "$Id: TextFileContentHandler.java 1062 2023-09-25 23:11:41Z tquadrat $" )
+@ClassVersion( sourceVersion = "$Id: TextFileContentHandler.java 1151 2025-10-01 21:32:15Z tquadrat $" )
 @API( status = INTERNAL, since = "0.1.0" )
 public final class TextFileContentHandler extends DefaultHandler
 {
@@ -170,7 +170,7 @@ public final class TextFileContentHandler extends DefaultHandler
             //---* A text resource description *-------------------------------
             case "translation" ->
             {
-                final var translations = m_Texts.computeIfAbsent( m_CurrentLocale, locale -> new TreeMap<>() );
+                final var translations = m_Texts.computeIfAbsent( m_CurrentLocale, _ -> new TreeMap<>() );
                 translations.put( m_CurrentKey, new TextEntry( m_CurrentKey, false, m_CurrentLocale, m_CurrentDescription.toString(), m_CurrentText.toString(), ADDITIONAL_TEXT_FILE ) );
 
                 m_CurrentLocale = null;

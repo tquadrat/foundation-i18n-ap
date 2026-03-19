@@ -1,6 +1,6 @@
 /*
  * ============================================================================
- * Copyright © 2002-2023 by Thomas Thrien.
+ * Copyright © 2002-2025 by Thomas Thrien.
  * All Rights Reserved.
  * ============================================================================
  * Licensed to the public under the agreements of the GNU Lesser General Public
@@ -63,12 +63,12 @@ import org.tquadrat.foundation.i18n.Translation;
  *  files from the annotations.
  *
  *  @extauthor Thomas Thrien - thomas.thrien@tquadrat.org
- *  @version $Id: TextCollector.java 1062 2023-09-25 23:11:41Z tquadrat $
+ *  @version $Id: TextCollector.java 1151 2025-10-01 21:32:15Z tquadrat $
  *  @since 0.0.2
  *
  *  @UMLGraph.link
  */
-@ClassVersion( sourceVersion = "$Id: TextCollector.java 1062 2023-09-25 23:11:41Z tquadrat $" )
+@ClassVersion( sourceVersion = "$Id: TextCollector.java 1151 2025-10-01 21:32:15Z tquadrat $" )
 @API( status = INTERNAL, since = "0.1.0" )
 public class TextCollector extends SimpleElementVisitor9<Void,Map<Locale,SortedMap<String,TextEntry>>>
 {
@@ -137,7 +137,7 @@ public class TextCollector extends SimpleElementVisitor9<Void,Map<Locale,SortedM
             final var entry = new TextEntry( key, isMessage, locale, description, text, className );
 
             //---* Get the text map *------------------------------------------
-            final var textMap = texts.computeIfAbsent( locale, currentLocale -> new TreeMap<>() );
+            final var textMap = texts.computeIfAbsent( locale, _ -> new TreeMap<>() );
 
             //---* Add the entry *---------------------------------------------
             if( textMap.containsKey( key ) )

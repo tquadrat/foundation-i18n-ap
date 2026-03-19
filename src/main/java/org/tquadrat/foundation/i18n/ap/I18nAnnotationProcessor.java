@@ -1,6 +1,6 @@
 /*
  * ============================================================================
- *  Copyright © 2002-2023 by Thomas Thrien.
+ *  Copyright © 2002-2025 by Thomas Thrien.
  *  All Rights Reserved.
  * ============================================================================
  *  Licensed to the public under the agreements of the GNU Lesser General Public
@@ -70,6 +70,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.SequencedCollection;
 import java.util.Set;
 import java.util.SortedMap;
 
@@ -91,12 +92,12 @@ import org.xml.sax.SAXException;
  *  The annotation processor for the module {@code org.tquadrat.foundation.i18n}.
  *
  *  @extauthor Thomas Thrien - thomas.thrien@tquadrat.org
- *  @version $Id: I18nAnnotationProcessor.java 1062 2023-09-25 23:11:41Z tquadrat $
+ *  @version $Id: I18nAnnotationProcessor.java 1151 2025-10-01 21:32:15Z tquadrat $
  *  @since 0.0.1
  *
  *  @UMLGraph.link
  */
-@ClassVersion( sourceVersion = "$Id: I18nAnnotationProcessor.java 1062 2023-09-25 23:11:41Z tquadrat $" )
+@ClassVersion( sourceVersion = "$Id: I18nAnnotationProcessor.java 1151 2025-10-01 21:32:15Z tquadrat $" )
 @API( status = STABLE, since = "0.0.1" )
 @SupportedSourceVersion( SourceVersion.RELEASE_17 )
 @SupportedOptions( { APBase.ADD_DEBUG_OUTPUT, APBase.MAVEN_GOAL, ADDITIONAL_TEXT_LOCATION } )
@@ -306,6 +307,7 @@ public class I18nAnnotationProcessor extends APBase
             final Map<Locale,SortedMap<String,TextEntry>> texts = new HashMap<>();
             final Collection<Element> processedElements = new HashSet<>();
 
+            //noinspection ConstantExpression
             if( !annotations.isEmpty() )
             {
                 //---* Get the message prefix *--------------------------------
@@ -368,13 +370,13 @@ public class I18nAnnotationProcessor extends APBase
              * Even when no text or message annotation was found, there could
              * be still some additional texts.
              */
-            final List<Element> useAdditionalTextsAnnotatedElements = new ArrayList<>( roundEnvironment.getElementsAnnotatedWith( UseAdditionalTexts.class ) );
+            final SequencedCollection<Element> useAdditionalTextsAnnotatedElements = new ArrayList<>( roundEnvironment.getElementsAnnotatedWith( UseAdditionalTexts.class ) );
             final Optional<String> textFileLocation = switch( useAdditionalTextsAnnotatedElements.size() )
             {
                 case 0 -> Optional.empty();
                 case 1 ->
                     {
-                        final var annotation = useAdditionalTextsAnnotatedElements.get( 0 ).getAnnotation( UseAdditionalTexts.class );
+                        final var annotation = useAdditionalTextsAnnotatedElements.getFirst().getAnnotation( UseAdditionalTexts.class );
                         final var location = annotation.location();
                         yield isEmptyOrBlank( location ) ? Optional.empty() : Optional.of( location );
                     }
