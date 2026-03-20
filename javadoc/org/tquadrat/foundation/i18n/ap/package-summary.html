@@ -20,7 +20,7 @@ loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
 </noscript>
-<header role="banner"><div style="overflow:auto;"><img src="../../../../../resources/tquadrat_logo.jpg" alt="tquadrat.org"style="float:right;"><div style="font-family:sans-serif;font-size:40px;font-weight:bold;padding-left:30px;"><p>tquadrat's <i>Foundation</i> Tool<br>org.tquadrat.foundation.i18n.ap 0.25.2 API</p></div>      <p>Build: 2026-03-20T14:58:11.584090126Z[UTC]</p>      </div>
+<header role="banner"><div style="overflow:auto;"><img src="../../../../../resources/tquadrat_logo.jpg" alt="tquadrat.org"style="float:right;"><div style="font-family:sans-serif;font-size:40px;font-weight:bold;padding-left:30px;"><p>tquadrat's <i>Foundation</i> Tool<br>org.tquadrat.foundation.i18n.ap 0.25.2 API</p></div>      <p>Build: 2026-03-20T17:08:11.390756414Z[UTC]</p>      </div>
 <nav role="navigation">
 <!-- ========= START OF TOP NAVBAR ======= -->
 <div class="top-nav" id="navbar-top">
@@ -104,7 +104,7 @@ option.[&hellip;]</cite>&quot;</p> </div>
 <h2 id="configure-maven-to-use-the-annotation-processor-heading">Configure Maven to use the Annotation Processor</h2>
 <p>For Maven, the following lines must be added to the <code>pom.xml</code>
 of the project to build:</p>
-<blockquote><pre><code>&hellip;
+<blockquote><div class="source-container"><pre>&hellip;
 &lt;dependencies&gt;
     &hellip;
     &lt;dependency&gt;
@@ -168,19 +168,19 @@ of the project to build:</p>
         &hellip;
     &lt;/plugins&gt;
     &hellip;
-&lt;/build&gt;</code></pre></blockquote>
+&lt;/build&gt;</pre></div></blockquote>
 
 <h2 id="configure-gradle-to-use-the-annotation-processor-heading">Configure Gradle to use the Annotation Processor</h2>
 <p>To add the annotation processor to the Gradle build configuration, place
 the following line to the respective <code>build.gradle</code> file:</p>
-<blockquote><pre><code>  &hellip;
+<blockquote><div class="source-container"><pre>&hellip;
 dependencies {
     implementation 'org:tquadrat.library:org.tquadrat.foundation.i18n:&lt;<i>proper version</i>&gt;' // For an application
     api 'org:tquadrat.library:org.tquadrat.foundation.i18n:&lt;<i>proper version</i>&gt;' // For a library
 
     annotationProcessor 'org:tquadrat.library:org.tquadrat.foundation.i18n.ap:&lt;<i>proper version</i>&gt;'
 }
-</code></pre></blockquote></div>
+</pre></div></blockquote></div>
 </section>
 </div>
 <section class="summary">

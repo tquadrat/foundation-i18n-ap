@@ -1,6 +1,6 @@
 /*
  * ============================================================================
- * Copyright © 2002-2021 by Thomas Thrien.
+ * Copyright © 2002-2026 by Thomas Thrien.
  * All Rights Reserved.
  * ============================================================================
  * Licensed to the public under the agreements of the GNU Lesser General Public
@@ -47,7 +47,7 @@
  *  <h2>Configure Maven to use the Annotation Processor</h2>
  *  <p>For Maven, the following lines must be added to the <code>pom.xml</code>
  *  of the project to build:</p>
- *  <blockquote><pre><code>&hellip;
+ *  <blockquote><div class="source-container"><pre>&hellip;
  *  &lt;dependencies&gt;
  *      &hellip;
  *      &lt;dependency&gt;
@@ -111,19 +111,19 @@
  *          &hellip;
  *      &lt;/plugins&gt;
  *      &hellip;
- *  &lt;/build&gt;</code></pre></blockquote>
+ *  &lt;/build&gt;</pre></div></blockquote>
  *
  *  <h2>Configure Gradle to use the Annotation Processor</h2>
  *  <p>To add the annotation processor to the Gradle build configuration, place
  *  the following line to the respective {@code build.gradle} file:</p>
- *  <blockquote><pre><code>  &hellip;
+ *  <blockquote><div class="source-container"><pre>&hellip;
  *  dependencies {
  *      implementation 'org:tquadrat.library:org.tquadrat.foundation.i18n:&lt;<i>proper version</i>&gt;' // For an application
  *      api 'org:tquadrat.library:org.tquadrat.foundation.i18n:&lt;<i>proper version</i>&gt;' // For a library
  *
  *      annotationProcessor 'org:tquadrat.library:org.tquadrat.foundation.i18n.ap:&lt;<i>proper version</i>&gt;'
  *  }
- *  </code></pre></blockquote>
+ *  </pre></div></blockquote>
  */
 
 package org.tquadrat.foundation.i18n.ap;
