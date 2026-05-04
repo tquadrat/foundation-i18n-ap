@@ -9,4 +9,4 @@ Refer also to [`foundation-i18n`](https://tquadrat.github.io/foundation-i18n/)
 The current version for the annotation processor is 0.25.3.
 
 ---  
-Last updated: 2026-05-03T21:52:52.9350007+02:00[Europe/Berlin]
+Last updated: 2026-05-04T21:14:06.691924493+02:00[Europe/Berlin]
