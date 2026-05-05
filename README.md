@@ -6,7 +6,7 @@ Refer also to [`foundation-i18n`](https://tquadrat.github.io/foundation-i18n/)
 
 - [Javadoc Reference](https://tquadrat.github.io/foundation-i18n-ap/javadoc/index.html)
 
-The current version for the annotation processor is 0.25.3.
+The current version for the annotation processor is 0.25.4.
 
 ---  
-Last updated: 2026-05-05T10:23:14.253556517+02:00[Europe/Berlin]
+Last updated: 2026-05-05T10:50:07.884280942+02:00[Europe/Berlin]
