@@ -63,12 +63,12 @@ import org.tquadrat.foundation.i18n.Translation;
  *  files from the annotations.
  *
  *  @extauthor Thomas Thrien - thomas.thrien@tquadrat.org
- *  @version $Id: TextCollector.java 1151 2025-10-01 21:32:15Z tquadrat $
+ *  @version $Id: TextCollector.java 1258 2026-06-04 18:33:06Z tquadrat $
  *  @since 0.0.2
  *
  *  @UMLGraph.link
  */
-@ClassVersion( sourceVersion = "$Id: TextCollector.java 1151 2025-10-01 21:32:15Z tquadrat $" )
+@ClassVersion( sourceVersion = "$Id: TextCollector.java 1258 2026-06-04 18:33:06Z tquadrat $" )
 @API( status = INTERNAL, since = "0.1.0" )
 public class TextCollector extends SimpleElementVisitor9<Void,Map<Locale,SortedMap<String,TextEntry>>>
 {
@@ -122,8 +122,8 @@ public class TextCollector extends SimpleElementVisitor9<Void,Map<Locale,SortedM
      *  @param  description The description for the text.
      *  @param  className   The fully qualified name of the class that defines
      *      the text.
-     *  @param  isMessage   {@code true} if the text is a message,
-     *      {@code false} otherwise.
+     *  @param  isMessage   {@true} if the text is a message,
+     *      {@false} otherwise.
      *  @param  translations    The texts in the various languages.
      */
     @SuppressWarnings( {"MethodCanBeVariableArityMethod", "OptionalGetWithoutIsPresent", "MethodWithTooManyParameters"} )

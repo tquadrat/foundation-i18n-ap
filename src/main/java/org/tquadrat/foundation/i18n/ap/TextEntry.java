@@ -28,12 +28,12 @@ import org.tquadrat.foundation.annotation.ClassVersion;
  *  Entries for resource bundle properties files.
  *
  *  @extauthor Thomas Thrien - thomas.thrien@tquadrat.org
- *  @version $Id: TextEntry.java 1130 2024-05-05 16:16:09Z tquadrat $
+ *  @version $Id: TextEntry.java 1258 2026-06-04 18:33:06Z tquadrat $
  *  @since 0.1.0
  *
  *  @param  key The resource bundle key for the text or message.
- *  @param  isMessage   {@code true} if the entry is for a message,
- *      {@code false} if not.
+ *  @param  isMessage   {@true} if the entry is for a message,
+ *      {@false} if not.
  *  @param  locale  The locale for this translation of a text or a message.
  *  @param  description The description for the text or message.
  *  @param  text    The text or message itself for the given locale;
@@ -44,7 +44,7 @@ import org.tquadrat.foundation.annotation.ClassVersion;
  *
  *  @UMLGraph.link
  */
-@ClassVersion( sourceVersion = "$Id: TextEntry.java 1130 2024-05-05 16:16:09Z tquadrat $" )
+@ClassVersion( sourceVersion = "$Id: TextEntry.java 1258 2026-06-04 18:33:06Z tquadrat $" )
 @API( status = INTERNAL, since = "0.1.0" )
 public record TextEntry( String key, boolean isMessage, Locale locale, String description, String text, String className )
 {
@@ -52,8 +52,8 @@ public record TextEntry( String key, boolean isMessage, Locale locale, String de
      *  Creates a new instance of {@code TexEntry}.
      *
      *  @param  key The resource bundle key for the text or message.
-     *  @param  isMessage   {@code true} if the entry is for a message,
-     *      {@code false} if not.
+     *  @param  isMessage   {@true} if the entry is for a message,
+     *      {@false} if not.
      *  @param  locale  The locale for this translation of a text or a message.
      *  @param  description The description for the text or message.
      *  @param  text    The text or message itself for the given locale;
